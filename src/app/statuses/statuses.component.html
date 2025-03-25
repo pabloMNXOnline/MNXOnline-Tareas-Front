@@ -1,0 +1,45 @@
+<div class="statuses-container">
+    <div class="status-container">
+        <h2>To Do</h2>
+        <div class="tasks-container">
+            @if (tasks_toDo.length > 0) {
+                <app-tasks [tasks]="tasks_toDo"></app-tasks>
+            } @else {
+                <p>No hay tareas en To Do.</p>
+            }
+        </div>
+    </div>
+
+    <div class="status-container">
+        <h2>In Process</h2>
+        <div class="tasks-container">
+            @if (tasks_inProcess.length > 0) {
+                <app-tasks [tasks]="tasks_inProcess"></app-tasks>
+            } @else {
+                <p>No hay tareas en In Process.</p>
+            }
+        </div>
+    </div>
+
+    <div class="status-container">
+        <h2>Under Review</h2>
+        <div class="tasks-container">
+            @if (tasks_underReview.length > 0) {
+                <app-tasks [tasks]="tasks_underReview"></app-tasks>
+            } @else {
+                <p>No hay tareas en Under Review.</p>
+            }
+        </div>
+    </div>
+
+    <div class="status-container">
+        <h2>Finished</h2>
+        <div class="tasks-container">
+            @if (tasks_finished.length > 0) {
+                <app-tasks [tasks]="tasks_finished"></app-tasks>
+            } @else {
+                <p>No hay tareas en Finished.</p>
+            }
+        </div>
+    </div>
+</div>

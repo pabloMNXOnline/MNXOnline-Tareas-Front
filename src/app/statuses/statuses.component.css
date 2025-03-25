@@ -1,0 +1,57 @@
+/* Contenedor padre de las columnas */
+.statuses-container {
+  display: flex; 
+  gap: 20px;  /* Espacio entre columnas */
+  overflow-x: auto;  /* Permite desplazamiento horizontal si hay muchas columnas */
+  padding: 20px;
+  background-color: #f4f5f7;
+  height: 100vh;
+  align-items: flex-start; /* Asegura que las columnas empiecen desde arriba */
+}
+
+/* Cada columna */
+.status-container {
+  background: #ebecf0;
+  border-radius: 8px;
+  padding: 10px;
+  width: 280px;  /* Tamaño fijo para que las columnas sean iguales */
+  min-width: 280px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  height: fit-content; /* Ajusta la altura a la cantidad de tareas */
+}
+
+/* Título de cada columna */
+.status-container h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding: 10px;
+  color: #333;
+}
+
+/* Contenedor de tareas dentro de cada columna */
+.tasks-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 50px;
+}
+
+/* Tarjetas de tareas */
+.task-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  padding: 12px;
+  transition: box-shadow 0.2s;
+  cursor: grab;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Efecto hover en las tarjetas */
+.task-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}

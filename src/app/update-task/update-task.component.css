@@ -1,0 +1,61 @@
+.mat-dialog-content {
+    padding: 25px;
+    background-color: #f4f4f4; /* Un gris un poco más oscuro para diferenciar */
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .mat-dialog-container {
+    border-radius: 16px;
+    padding: 30px;
+    background-color: #ffffff;
+    border: 1px solid #ddd; /* Un borde ligeramente más notorio */
+  }
+  
+  h1.mat-dialog-title {
+    color: #ff9800; /* Un color diferente para indicar "Edición" */
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+  mat-select {
+    border-radius: 6px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: space-between; /* Distribuye los botones */
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  button.mat-raised-button {
+    background-color: #ff9800; /* Naranja para destacar edición */
+    color: white;
+    font-weight: 500;
+    padding: 12px 25px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  button.mat-raised-button:hover {
+    background-color: #e68900; /* Naranja más oscuro */
+    transform: translateY(-2px);
+  }
+  
+  button.mat-button {
+    color: #666;
+    font-weight: 500;
+  }

@@ -1,0 +1,12 @@
+<h1 class="modal-title">Crear Tarea</h1>
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="task-form">
+      <mat-form-field appearance="fill">
+        <input matInput placeholder="Título" formControlName="title" class="input-field">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <textarea matInput placeholder="Descripción" formControlName="description" class="input-field"></textarea>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" class="submit-btn">Guardar</button>
+    </form>

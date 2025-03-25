@@ -1,0 +1,61 @@
+.mat-dialog-content {
+    padding: 25px;
+    background-color: #f9f9f9; /* Un gris muy claro, casi blanco */
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Sombra más suave */
+  }
+
+  .mat-dialog-container {
+    border-radius: 16px; /* Bordes más redondeados */
+    padding: 35px; /* Un poco más de espacio */
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0; /* Borde más sutil */
+  }
+
+  h1.mat-dialog-title {
+    color: #2196f3; /* Azul más moderno */
+    font-size: 28px; /* Un poco más grande */
+    font-weight: 600; /* Más énfasis */
+    margin-bottom: 25px;
+    text-align: center; /* Centrar el título */
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Más espacio entre elementos */
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  mat-select {
+    border-radius: 6px;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: flex-end; /* Alinea los botones a la derecha */
+    gap: 15px; /* Espacio entre los botones */
+    margin-top: 15px;
+  }
+
+  button.mat-raised-button {
+    background-color: #2196f3;
+    color: white;
+    font-weight: 500; /* Un poco menos negrita */
+    padding: 12px 25px;
+    border-radius: 8px; /* Bordes más redondeados */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones suaves */
+  }
+
+  button.mat-raised-button:hover {
+    background-color: #1976d2; /* Azul más oscuro al pasar el mouse */
+    transform: translateY(-2px); /* Ligero efecto de elevación */
+  }
+
+  button.mat-button {
+    color: #555; /* Gris más oscuro para el botón de cancelar */
+    font-weight: 500;
+  }

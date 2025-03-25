@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Editar Tarea</h1>
+<div mat-dialog-content>
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input matInput placeholder="Título" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput placeholder="Descripción" formControlName="description"></textarea>
+    </mat-form-field>
+
+    <!-- 🔹 Select con el estado actual en el mat-label -->
+    <mat-form-field>
+      <mat-label>Estado actual: {{ getStatusLabel(taskForm.value.status) }}</mat-label>
+      <mat-select formControlName="status">
+        <mat-option value="67e29589c027ecee744f06b4">To Do</mat-option>
+        <mat-option value="67e29598c027ecee744f06b6">In Process</mat-option>
+        <mat-option value="67e295a1c027ecee744f06b8">Under Review</mat-option>
+        <mat-option value="67e295a7c027ecee744f06ba">Finished</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="button-container">
+      <button mat-raised-button color="primary" type="submit">Guardar</button>
+      <button mat-button (click)="dialogRef.close()">Cancelar</button>
+    </div>
+  </form>
+</div>
