@@ -4,12 +4,13 @@ import { StatusesComponent } from '../statuses/statuses.component';
 import { StatusesService } from '../statuses/statuses.service';
 import { inject } from '@angular/core';
 import { TaskModalsComponent } from '../task-modals/task-modals.component'
+import { MatButtonModule } from '@angular/material/button';
 
 
 
 @Component({
   selector: 'app-projects',
-  imports: [StatusesComponent, TaskModalsComponent],
+  imports: [StatusesComponent, TaskModalsComponent, MatButtonModule],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.css'
 })

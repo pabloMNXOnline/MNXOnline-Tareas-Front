@@ -1,25 +1,27 @@
 /* Contenedor padre de las columnas */
 .statuses-container {
-  display: flex; 
-  gap: 20px;  /* Espacio entre columnas */
-  overflow-x: auto;  /* Permite desplazamiento horizontal si hay muchas columnas */
+  display: flex;
+  gap: 20px;
   padding: 20px;
   background-color: #f4f5f7;
   height: 100vh;
-  align-items: flex-start; /* Asegura que las columnas empiecen desde arriba */
+  align-items: stretch; /* 🔹 Todas las columnas tendrán la misma altura */
+  justify-content: space-between;
 }
+
 
 /* Cada columna */
 .status-container {
   background: #ebecf0;
   border-radius: 8px;
   padding: 10px;
-  width: 280px;  /* Tamaño fijo para que las columnas sean iguales */
-  min-width: 280px;
+  flex: 1; /* 🔹 Hace que todas las columnas ocupen el mismo espacio */
+  min-width: 200px;
+  max-width: 25%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  height: fit-content; /* Ajusta la altura a la cantidad de tareas */
+  height: 100%; /* 🔹 Asegura que las columnas ocupen toda la altura */
 }
 
 /* Título de cada columna */
@@ -33,10 +35,9 @@
 
 /* Contenedor de tareas dentro de cada columna */
 .tasks-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  min-height: 50px;
+  flex-grow: 1; /* 🔹 Hace que el área de tareas se expanda para llenar la columna */
+  overflow-y: auto; /* 🔹 Activa el scroll si hay muchas tareas */
+  max-height: calc(100vh - 120px); /* 🔹 Ajusta la altura máxima de las tareas */
 }
 
 /* Tarjetas de tareas */

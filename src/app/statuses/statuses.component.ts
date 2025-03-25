@@ -2,10 +2,12 @@ import { Component,inject,Input, OnInit} from '@angular/core';
 import { TasksComponent } from '../tasks/tasks.component';
 import { TasksService } from '../tasks/tasks.service';
 import { forkJoin } from 'rxjs'; 
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-statuses',
-  imports: [TasksComponent],
+  imports: [TasksComponent, CommonModule],
   templateUrl: './statuses.component.html',
   styleUrl: './statuses.component.css'
 })

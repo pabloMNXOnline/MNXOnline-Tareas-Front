@@ -1,18 +1,19 @@
 <div class="statuses-container">
     <div class="status-container">
         <h2>To Do</h2>
-        <div class="tasks-container">
+        <div class="tasks-container" [ngClass]="{ 'scrollable': tasks_toDo.length > 5 }">
             @if (tasks_toDo.length > 0) {
                 <app-tasks [tasks]="tasks_toDo"></app-tasks>
             } @else {
                 <p>No hay tareas en To Do.</p>
             }
         </div>
+        
     </div>
 
     <div class="status-container">
         <h2>In Process</h2>
-        <div class="tasks-container">
+        <div class="tasks-container" [ngClass]="{ 'scrollable': tasks_inProcess.length > 5 }">
             @if (tasks_inProcess.length > 0) {
                 <app-tasks [tasks]="tasks_inProcess"></app-tasks>
             } @else {

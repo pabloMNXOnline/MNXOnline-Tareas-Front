@@ -1,69 +1,22 @@
-.projects-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%; /* Añade un ancho del 100% */
-    padding: 20px; /* Añade un poco de relleno alrededor del contenido */
-  }
-
-  .statuses-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-
-  .status-item {
-    width: 24%;
-    margin-bottom: 10px;
-  }
-
-  .create-task-btn {
-    background-color: #3f51b5;
-    color: white;
-    font-weight: 600;
-    padding: 12px 24px;
-    border-radius: 30px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    text-transform: uppercase;
-    font-size: 16px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    margin-bottom: 20px;
-    align-self: flex-start;
-    margin-left: 0; /* Elimina el margen izquierdo */
-  }
-
-  .create-task-btn:hover {
-    background-color: #303f9f;
-    transform: translateY(-2px);
-  }
-
-  .create-task-btn:active {
-    background-color: #1e2a78;
-    transform: translateY(0);
-  }
-
-
-/* Boton */
-
 .nueva-tarea-btn {
-  background-color: #3f51b5;
-  color: white;
-  font-weight: bold;
+  margin: 20px;
+  padding: 10px 20px;
   font-size: 16px;
-  padding: 12px 24px;
-  border-radius: 8px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  text-transform: uppercase;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  display: flex;
-  align-items: center;
-  gap: 8px; 
+  font-weight: bold;
+  background-color: #1976d2 !important;
+  color: white !important; 
 }
 
 .nueva-tarea-btn:hover {
-  background-color: #303f9f; 
-  transform: translateY(-2px);
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px); /* Hace que se "levante" */
+  transition: all 0.2s ease-in-out;
+}
 
 .nueva-tarea-btn:active {
-  background-color: #1e2a78;
-  transform: translateY(0);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  transform: translateY(2px); /* Simula un clic real */
+  transition: all 0.1s ease-in-out;
 }
+
+
