@@ -20,6 +20,17 @@
       </mat-select>
     </mat-form-field>
 
+    <mat-form-field>
+      <mat-label>Propietario de la tarea</mat-label>
+      <mat-select formControlName="user">
+        @for (user of allUsers; track user._id) {
+          <mat-option [value]="user._id">
+            {{ user.username }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
     <div class="button-container">
       <button mat-raised-button color="primary" type="submit">Guardar</button>
       <button mat-button (click)="dialogRef.close()">Cancelar</button>

@@ -1,10 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { StatusesComponent } from '../statuses/statuses.component';
-import { StatusesService } from '../statuses/statuses.service';
 import { inject } from '@angular/core';
 import { TaskModalsComponent } from '../task-modals/task-modals.component'
 import { MatButtonModule } from '@angular/material/button';
+import { ProjectsService } from './projects.service';
+
+export interface Project {
+  id: string;
+  name: string;
+  user: string;
+  colaborators: Object[];
+}
 
 
 
@@ -15,13 +22,14 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './projects.component.css'
 })
 export class ProjectsComponent implements OnInit {
-  @Input() statuses : any[] = [];
+  @Input() project?: Project;
 
-  private readonly statusesService = inject(StatusesService)
+  private readonly projectsService = inject(ProjectsService)
 
   ngOnInit(): void {
-    this.statusesService.getStates().subscribe((status:any[]) => {
-      this.statuses = status;
+    this.projectsService.getProjectById('67e294e7c027ecee744f06a6').subscribe((project:any) => {
+      this.project = project;
+      console.log("hola",this.project)
     })
   }
   constructor(public dialog: MatDialog) {}

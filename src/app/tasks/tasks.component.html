@@ -6,8 +6,8 @@
             </mat-card-header>
             
             <!-- 🔹 Mostrar el owner solo si existe -->
-            @if (task.owner) {
-                <mat-card-subtitle>Owner: {{ task.owner }}</mat-card-subtitle>
+            @if (task.user) {
+                <mat-card-subtitle>Owner: {{ task.user.username }}</mat-card-subtitle>
             }
 
             <mat-card-actions>

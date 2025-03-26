@@ -1,5 +1,10 @@
-<button mat-raised-button color="primary" class="nueva-tarea-btn" (click)="openDialog()">
-    + Nueva Tarea
-</button>
+
+<div>
+    <h1>{{this.project?.name}}</h1>
+    <button mat-raised-button color="primary" class="nueva-tarea-btn" (click)="openDialog()">
+        + Nueva Tarea
+    </button>
+</div>
+
 
 <app-statuses></app-statuses>
