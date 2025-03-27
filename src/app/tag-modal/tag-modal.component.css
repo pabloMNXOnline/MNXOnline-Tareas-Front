@@ -1,0 +1,31 @@
+/* Ajusta el ancho del modal */
+mat-dialog-container {
+    width: 300px; /* Ajusta el ancho según sea necesario */
+  }
+  
+  /* Agrega padding al contenido del modal */
+  mat-dialog-content {
+    padding: 20px;
+  }
+  
+  /* Estiliza los campos de entrada */
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 15px; /* Agrega margen inferior */
+  }
+  
+  /* Estiliza los botones */
+  mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  button {
+    margin-left: 10px; /* Agrega margen entre los botones */
+  }
+  
+  button[type="submit"] {
+    background-color: #007bff; /* Color de fondo del botón "Guardar" */
+    color: white;
+  }

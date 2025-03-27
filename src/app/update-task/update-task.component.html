@@ -1,28 +1,41 @@
 <h1 mat-dialog-title>Editar Tarea</h1>
 <div mat-dialog-content>
   <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
-    <mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
       <input matInput placeholder="Título" formControlName="name">
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
       <textarea matInput placeholder="Descripción" formControlName="description"></textarea>
     </mat-form-field>
 
-    <!-- 🔹 Select con el estado actual en el mat-label -->
-    <mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
       <mat-label>Estado actual: {{ getStatusLabel(taskForm.value.status) }}</mat-label>
       <mat-select formControlName="status">
-        <mat-option value="67e29589c027ecee744f06b4">To Do</mat-option>
-        <mat-option value="67e29598c027ecee744f06b6">In Process</mat-option>
-        <mat-option value="67e295a1c027ecee744f06b8">Under Review</mat-option>
-        <mat-option value="67e295a7c027ecee744f06ba">Finished</mat-option>
+        <mat-option value="67e52395fdbbf39f531c34fe">To Do</mat-option>
+        <mat-option value="67e5239efdbbf39f531c3500">In Process</mat-option>
+        <mat-option value="67e523a8fdbbf39f531c3502">Under Review</mat-option>
+        <mat-option value="67e523adfdbbf39f531c3504">Finished</mat-option>
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Etiquetas</mat-label>
+      <mat-select formControlName="labels" multiple>
+        @for (label of allLabels; track label._id) {
+          <mat-option [value]="label._id">
+            {{ label.name }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
       <mat-label>Propietario de la tarea</mat-label>
       <mat-select formControlName="user">
+        <mat-option [value]="null">
+          <em>Sin propietario</em>
+        </mat-option>
         @for (user of allUsers; track user._id) {
           <mat-option [value]="user._id">
             {{ user.username }}
@@ -32,8 +45,10 @@
     </mat-form-field>
 
     <div class="button-container">
-      <button mat-raised-button color="primary" type="submit">Guardar</button>
-      <button mat-button (click)="dialogRef.close()">Cancelar</button>
+      <button mat-raised-button color="primary" type="submit" class="save-button">Guardar</button>
     </div>
   </form>
+  <div class="button-container">
+    <button mat-button class="cancel-button" (click)="onCancel()">Cancelar</button>
+  </div>
 </div>

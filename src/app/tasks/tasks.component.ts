@@ -4,10 +4,11 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { UpdateTaskComponent } from '../update-task/update-task.component';
 import { MatButtonModule } from '@angular/material/button';
 import { ProjectsService } from '../projects/projects.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-tasks',
-  imports: [MatCardModule,MatDialogModule, MatButtonModule],
+  imports: [MatCardModule,MatDialogModule, MatButtonModule, CommonModule],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css'
 })
@@ -34,8 +35,10 @@ export class TasksComponent implements OnInit {
       (datosProyecto) => {
         console.log("Estos son los datos del proyecto ", datosProyecto);
         this.dialog.open(UpdateTaskComponent, {
-          width: '700px',
-          data: { ...task, id: this.selectedTaskId, projectUsers: datosProyecto } // pass the data to the dialog
+          maxWidth: '80vw',
+          maxHeight: '80vh', 
+          panelClass: 'custom-dialog',
+          data: { ...task, id: this.selectedTaskId, projectUsers: datosProyecto }
         });
       },
       (error) => {

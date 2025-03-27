@@ -5,23 +5,22 @@
   padding: 20px;
   background-color: #f4f5f7;
   height: calc(70vh);
-  align-items: stretch; /* 🔹 Todas las columnas tendrán la misma altura */
+  align-items: stretch;
   justify-content: space-between;
 }
-
 
 /* Cada columna */
 .status-container {
   background: #ebecf0;
   border-radius: 8px;
   padding: 10px;
-  flex: 1; /* 🔹 Hace que todas las columnas ocupen el mismo espacio */
+  flex: 1;
   min-width: 200px;
   max-width: 25%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  height: 100%; /* 🔹 Asegura que las columnas ocupen toda la altura */
+  height: 100%;
 }
 
 /* Título de cada columna */
@@ -35,9 +34,10 @@
 
 /* Contenedor de tareas dentro de cada columna */
 .tasks-container {
-  flex-grow: 1; /* 🔹 Hace que el área de tareas se expanda para llenar la columna */
-  overflow-y: auto; /* 🔹 Activa el scroll si hay muchas tareas */
-  max-height: calc(100vh - 120px); /* 🔹 Ajusta la altura máxima de las tareas */
+  display: block; /* Cambiamos display a block */
+  overflow-y: auto;
+  max-height: calc(100vh - 200px);
+  padding-bottom: 5px;
 }
 
 /* Tarjetas de tareas */
@@ -48,11 +48,18 @@
   padding: 12px;
   transition: box-shadow 0.2s;
   cursor: grab;
-  display: flex;
-  flex-direction: column;
+  margin-bottom: 20px; /* Aumentamos el margen inferior */
 }
 
 /* Efecto hover en las tarjetas */
 .task-card:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
+
+.filters-container {
+  display: flex;
+  gap: 10px; /* Espacio entre los filtros */
+  align-items: center; /* Alineación vertical */
+}
+
+

@@ -1,22 +1,63 @@
-.task-board {
+.task-card {
+  position: relative;
+  text-align: center;
+  padding-bottom: 50px;
+}
+
+.label-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.label-sticker {
+  padding: 2px 8px;
+  margin: 2px 4px;
+  border-radius: 4px;
+  color: black;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.task-title {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.task-actions {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 20px;
-  background-color: #f4f5f7;
-  min-height: 100vh;
+  align-items: center;
 }
 
-.task-card {
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  padding: 12px;
-  transition: box-shadow 0.2s;
+.task-owner {
+  font-style: italic;
+  margin-top: 5px;
 }
 
-.task-card:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+mat-card-content {
+  margin-top: 30px;
 }
 
+/* Colores de fondo según el estado */
+.status-todo {
+  background-color: #ffe0e0; /* Rojo claro */
+}
 
+.status-in-process {
+  background-color: #fffacd; /* Amarillo claro */
+}
+
+.status-under-review {
+  background-color: #e0ffe0; /* Verde claro */
+}
+
+status-finished {
+  background-color: #90ee90; /* Verde */
+}

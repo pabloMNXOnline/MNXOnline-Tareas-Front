@@ -18,7 +18,7 @@ export class ProjectsService {
     private readonly http = inject(HttpClient)
 
     public getProjectUsers(): Observable<Project>{
-        return this.http.get<Project>('http://localhost:3000/projects/67e294e7c027ecee744f06a6/users')
+        return this.http.get<Project>('http://localhost:3000/projects/67e5235cfdbbf39f531c34fb/users')
     }
 
     public getProjectById(id : string) : Observable<Project>{

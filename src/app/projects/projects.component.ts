@@ -5,6 +5,8 @@ import { inject } from '@angular/core';
 import { TaskModalsComponent } from '../task-modals/task-modals.component'
 import { MatButtonModule } from '@angular/material/button';
 import { ProjectsService } from './projects.service';
+import { TagModalComponent } from '../tag-modal/tag-modal.component';
+
 
 export interface Project {
   id: string;
@@ -17,7 +19,7 @@ export interface Project {
 
 @Component({
   selector: 'app-projects',
-  imports: [StatusesComponent, TaskModalsComponent, MatButtonModule],
+  imports: [StatusesComponent, TaskModalsComponent, MatButtonModule, TagModalComponent],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.css'
 })
@@ -27,7 +29,7 @@ export class ProjectsComponent implements OnInit {
   private readonly projectsService = inject(ProjectsService)
 
   ngOnInit(): void {
-    this.projectsService.getProjectById('67e294e7c027ecee744f06a6').subscribe((project:any) => {
+    this.projectsService.getProjectById('67e5235cfdbbf39f531c34fb').subscribe((project:any) => {
       this.project = project;
       console.log("hola",this.project)
     })
@@ -45,4 +47,15 @@ export class ProjectsComponent implements OnInit {
     });
   }
 
+  openTagModal() {
+    const dialogRef = this.dialog.open(TagModalComponent, {
+      width: '800px', // Ajusta el ancho según sea necesario
+      data: {} // Puedes pasar datos iniciales al modal si es necesario
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Datos de la etiqueta:', result);
+      // Aquí puedes manejar los datos de la etiqueta (result)
+    });
+  }
 }
