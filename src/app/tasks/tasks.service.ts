@@ -20,19 +20,19 @@ export class TasksService {
   private readonly http = inject(HttpClient)
 
   public getToDoTasks(): Observable<Task[]> { 
-    return this.http.get<Task[]>('http://localhost:3000/tasks/status/67e29589c027ecee744f06b4')
+    return this.http.get<Task[]>('http://localhost:3000/tasks/status/67e67c1b2d4890a08460641b')
   }
 
   public getInProcessTasks(): Observable<Task[]> { 
-    return this.http.get<Task[]>('http://localhost:3000/tasks/status/67e29598c027ecee744f06b6')
+    return this.http.get<Task[]>('http://localhost:3000/tasks/status/67e67c222d4890a08460641d')
   }
 
   public getUnderRevisionTasks(): Observable<Task[]> { 
-    return this.http.get<Task[]>('http://localhost:3000/tasks/status/67e295a1c027ecee744f06b8')
+    return this.http.get<Task[]>('http://localhost:3000/tasks/status/67e67c2a2d4890a08460641f')
   }
 
   public getFinishedTasks(): Observable<Task[]> { 
-    return this.http.get<Task[]>('http://localhost:3000/tasks/status/67e295a7c027ecee744f06ba')
+    return this.http.get<Task[]>('http://localhost:3000/tasks/status/67e67c2f2d4890a084606421')
   }
 
   public createTask(task: Task): Observable<Task>{

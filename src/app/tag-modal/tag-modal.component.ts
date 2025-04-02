@@ -4,37 +4,33 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSelectModule } from '@angular/material/select';
-import { TasksService } from '../tasks/tasks.service';
+import { TagModalService } from './tag-modal.service';
 
 @Component({
-  selector: 'app-task-modals',
-  standalone: true, // Asegura que se reconozcan los imports
+  selector: 'app-tag-modal',
+  standalone: true,
   imports: [
     MatDialogModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule,
-    MatSelectModule
+    MatButtonModule
   ],
-  templateUrl: './task-modals.component.html',
-  styleUrl: './task-modals.component.css'
+  templateUrl: './tag-modal.component.html',
+  styleUrl: './tag-modal.component.css'
 })
-export class TaskModalsComponent {
-  taskForm: FormGroup;
+export class TagModalComponent {
+  tagForm: FormGroup;
 
   constructor(
-    public dialogRef: MatDialogRef<TaskModalsComponent>,
+    public dialogRef: MatDialogRef<TagModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
-    private tasksService: TasksService // 🔹 Inyectamos correctamente el servicio
+    private tagService: TagModalService,
   ) {
-    this.taskForm = this.fb.group({
+    this.tagForm = this.fb.group({
       name: [''],
-      description: [''],
-      status: ['67e67c1b2d4890a08460641b'],
-      user: [null],
+      color: ['#ffffff'],
       project: ['67e67ba92d4890a084606415']
     });
   }
@@ -44,12 +40,9 @@ export class TaskModalsComponent {
   }
 
   onSubmit() {
-    console.log(this.taskForm.value);
-
-    // 🔹 Llamamos al servicio para guardar la tarea
-    this.tasksService.createTask(this.taskForm.value).subscribe({
-      next: (response) => {
-        console.log('Tarea creada:', response);
+    this.tagService.createTag(this.tagForm.value).subscribe({
+      next : (response) =>{
+        console.log('Tag creado :', response)
         this.dialogRef.close(response);
       },
       error: (error) => console.error('Error al crear la tarea:', error)

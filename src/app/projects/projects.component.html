@@ -1,5 +1,23 @@
-<button mat-raised-button color="primary" class="nueva-tarea-btn" (click)="openDialog()">
-    + Nueva Tarea
-</button>
+<div class="project-container">
+    <div class="project-header">
+        <h1 class="project-title">{{this.project?.name}}</h1>
+        <p class="connected-user"> 
+            <span *ngIf="this.project?.user?.username">
+                Conectado como: {{this.project?.user?.username}}
+            </span>
+        </p>
+    </div>
 
-<app-statuses></app-statuses>
+    <div class="header-actions">
+        <button mat-raised-button color="primary" class="new-task-btn" (click)="openDialog()">
+            + Nueva Tarea
+        </button>
+        <button mat-raised-button color="primary" class="new-tag-btn" (click)="openTagModal()">
+            + Nueva Etiqueta
+        </button>
+    </div>
+
+    <div class="statuses-container">
+        <app-statuses></app-statuses>
+    </div>
+</div>

@@ -1,46 +1,70 @@
-<div class="statuses-container">
-    <div class="status-container">
-        <h2>To Do</h2>
-        <div class="tasks-container" [ngClass]="{ 'scrollable': tasks_toDo.length > 5 }">
-            @if (tasks_toDo.length > 0) {
-                <app-tasks [tasks]="tasks_toDo"></app-tasks>
-            } @else {
-                <p>No hay tareas en To Do.</p>
-            }
-        </div>
-        
-    </div>
-
-    <div class="status-container">
-        <h2>In Process</h2>
-        <div class="tasks-container" [ngClass]="{ 'scrollable': tasks_inProcess.length > 5 }">
-            @if (tasks_inProcess.length > 0) {
-                <app-tasks [tasks]="tasks_inProcess"></app-tasks>
-            } @else {
-                <p>No hay tareas en In Process.</p>
-            }
-        </div>
-    </div>
-
-    <div class="status-container">
-        <h2>Under Review</h2>
-        <div class="tasks-container">
-            @if (tasks_underReview.length > 0) {
-                <app-tasks [tasks]="tasks_underReview"></app-tasks>
-            } @else {
-                <p>No hay tareas en Under Review.</p>
-            }
-        </div>
-    </div>
-
-    <div class="status-container">
-        <h2>Finished</h2>
-        <div class="tasks-container">
-            @if (tasks_finished.length > 0) {
-                <app-tasks [tasks]="tasks_finished"></app-tasks>
-            } @else {
-                <p>No hay tareas en Finished.</p>
-            }
-        </div>
-    </div>
+<div class="filters-container">
+    <mat-form-field appearance="outline" class="filter-owner">
+      <mat-label>Filtrar por propietario</mat-label>
+      <mat-select [(value)]="selectedOwnerId" (selectionChange)="filterTasks()">
+        <mat-option [value]="null">Todos</mat-option>
+        @for (user of allUsers; track user._id.id) {
+          <mat-option [value]="user._id.id">{{ user._id.id.username || user._id.id }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline" class="filter-label">
+      <mat-label>Filtrar por etiqueta</mat-label>
+      <mat-select [(value)]="selectedLabelId" (selectionChange)="filterTasks()">
+        <mat-option [value]="null">Todas</mat-option>
+        @for (label of allLabels; track label._id) {
+          <mat-option [value]="label._id">{{ label.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
 </div>
+
+<div class="statuses-container">
+    
+  
+    <div class="status-container">
+      <h2>To Do</h2>
+      <div class="tasks-container" [ngClass]="{ 'scrollable': filtered_toDo.length > 5 }">
+        @if (filtered_toDo.length > 0) {
+          <app-tasks [tasks]="filtered_toDo"></app-tasks>
+        } @else {
+          <p>No hay tareas en To Do.</p>
+        }
+      </div>
+    </div>
+  
+    <div class="status-container">
+      <h2>In Process</h2>
+      <div class="tasks-container" [ngClass]="{ 'scrollable': filtered_inProcess.length > 5 }">
+        @if (filtered_inProcess.length > 0) {
+          <app-tasks [tasks]="filtered_inProcess"></app-tasks>
+        } @else {
+          <p>No hay tareas en In Process.</p>
+        }
+      </div>
+    </div>
+  
+    <div class="status-container">
+      <h2>Under Review</h2>
+      <div class="tasks-container">
+        @if (filtered_underReview.length > 0) {
+          <app-tasks [tasks]="filtered_underReview"></app-tasks>
+        } @else {
+          <p>No hay tareas en Under Review.</p>
+        }
+      </div>
+    </div>
+  
+    <div class="status-container">
+      <h2>Finished</h2>
+      <div class="tasks-container">
+        @if (filtered_finished.length > 0) {
+          <app-tasks [tasks]="filtered_finished"></app-tasks>
+        } @else {
+          <p>No hay tareas en Finished.</p>
+        }
+      </div>
+    </div>
+  </div>
+  

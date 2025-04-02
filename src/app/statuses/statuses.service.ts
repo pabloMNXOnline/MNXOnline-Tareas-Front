@@ -18,6 +18,6 @@ export class StatusesService {
   private readonly http = inject(HttpClient)
 
   public getStates():Observable<Status[]>{
-    return this.http.get<Status[]>('http://localhost:3000/states/project/67e1653bdbde2a57967b9ae9');
+    return this.http.get<Status[]>('http://localhost:3000/states/project/67e67ba92d4890a084606415');
   }
 }

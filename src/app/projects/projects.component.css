@@ -1,22 +1,31 @@
-.nueva-tarea-btn {
-  margin: 20px;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  background-color: #1976d2 !important;
-  color: white !important; 
+.project-container{
+  padding: 16px;
+}
+.project-header {
+  text-align: center;
+
 }
 
-.nueva-tarea-btn:hover {
-  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
-  transform: translateY(-2px); /* Hace que se "levante" */
-  transition: all 0.2s ease-in-out;
+.project-title {
+  font-size: 28px;
+  color: #3f51b5; /* Color azul para el título */
+  font-family: 'Arial', sans-serif; /* Cambiar la fuente */
 }
 
-.nueva-tarea-btn:active {
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  transform: translateY(2px); /* Simula un clic real */
-  transition: all 0.1s ease-in-out;
+.header-actions {
+  display: flex;
+  margin-bottom: 8px;
+  justify-content: center; /* Centrar los botones */
 }
 
+.header-actions button {
+  margin: 0 10px; /* Espacio entre los botones */
+}
 
+.connected-user {
+  text-align: right;
+  font-size: 14px; /* Reduce el tamaño de la fuente */
+  padding: 2px 5px; /* Reduce el padding */
+  margin: 0; /* Elimina el margen */
+  white-space: nowrap; /* Evita el salto de línea */
+}

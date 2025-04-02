@@ -1,21 +1,37 @@
 <div class="task-board">
-    @for (task of tasks; track task._id) {
-        <mat-card class="task-card">
-            <mat-card-header>
-                <mat-card-title>{{ task.name }}</mat-card-title>
-            </mat-card-header>
-            
-            <!-- 🔹 Mostrar el owner solo si existe -->
-            @if (task.owner) {
-                <mat-card-subtitle>Owner: {{ task.owner }}</mat-card-subtitle>
-            }
+  @for (task of tasks; track task._id) {
+      <mat-card class="task-card" [ngClass]="{
+          'status-todo': task.status.name === 'To do',
+          'status-in-process': task.status.name === 'In Process',
+          'status-under-review': task.status.name === 'Under Review',
+          'status-finished': task.status.name === 'Finished'
+      }">
+          <div class="label-container">
+              @for (label of task.labels; track label._id) {
+                  <div class="label-sticker" [style.backgroundColor]="label.color">
+                      {{ label.name }}
+                  </div>
+              }
+          </div>
 
-            <mat-card-actions>
-                <!-- 🔹 Botón para actualizar la tarea -->
-                <button mat-button color="primary" (click)="openUpdateForm(task)">
-                    Editar
-                </button>
-            </mat-card-actions>
-        </mat-card>
-    }
+          <mat-card-content>
+              <div class="task-title">
+                  {{ task.name }}
+              </div>
+
+              <div class="task-actions">
+                  @if(task.status.name != 'Finished'){
+                      <button mat-button color="primary" (click)="openUpdateForm(task)" class="edit-button">
+                          Editar
+                      </button>
+                  }
+                  @if (task.user) {
+                      <div class="task-owner">
+                          Owner: {{ task.user.username }}
+                      </div>
+                  }
+              </div>
+          </mat-card-content>
+      </mat-card>
+  }
 </div>

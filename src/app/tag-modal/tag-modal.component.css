@@ -1,0 +1,47 @@
+/* Ajusta el ancho del modal */
+mat-dialog-container {
+  width: 300px; /* Ajusta el ancho según sea necesario */
+}
+
+/* Agrega padding al contenido del modal */
+mat-dialog-content {
+  padding: 20px;
+  overflow: hidden; /* Elimina el scroll */
+}
+
+/* Estiliza los campos de entrada */
+.full-width {
+  width: 100%;
+  margin-bottom: 15px; /* Agrega margen inferior */
+}
+
+/* Estiliza los botones */
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.button-container button { /* Estilos comunes para ambos botones */
+  margin: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 50px;
+  background-color: #ffffff; /* Fondo gris claro */
+  color: #1976d2;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+
+.button-container button:hover {
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+  transition: all 0.2s ease-in-out;
+}
+
+.button-container button:active {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  transform: translateY(2px);
+  transition: all 0.1s ease-in-out;
+}
+
