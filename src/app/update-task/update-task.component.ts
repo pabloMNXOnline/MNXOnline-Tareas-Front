@@ -27,7 +27,7 @@ export interface LabelData {
     MatSelectModule,
   ],
   templateUrl: './update-task.component.html',
-  styleUrls: ['./update-task.component.css']
+  styleUrls: ['./update-task.component.css'],
 })
 export class UpdateTaskComponent implements OnInit{
 

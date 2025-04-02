@@ -1,40 +1,37 @@
 <div class="task-board">
-    @for (task of tasks; track task._id) {
+  @for (task of tasks; track task._id) {
       <mat-card class="task-card" [ngClass]="{
-        'status-todo': task.status.name === 'To do',
-        'status-in-process': task.status.name === 'In Process',
-        'status-under-review': task.status.name === 'Under Review',
-        'status-finished': task.status.name === 'Finished'
+          'status-todo': task.status.name === 'To do',
+          'status-in-process': task.status.name === 'In Process',
+          'status-under-review': task.status.name === 'Under Review',
+          'status-finished': task.status.name === 'Finished'
       }">
-        <div class="label-container">
-          @for (label of task.labels; track label._id) {
-            <div class="label-sticker" [style.backgroundColor]="label.color">
-              {{ label.name }}
-            </div>
-          }
-        </div>
-  
-        <mat-card-content>
-          <div class="task-title">
-            {{ task.name }}
+          <div class="label-container">
+              @for (label of task.labels; track label._id) {
+                  <div class="label-sticker" [style.backgroundColor]="label.color">
+                      {{ label.name }}
+                  </div>
+              }
           </div>
 
-          @if(task.status.name != 'Finished'){
-            <button mat-button color="primary" (click)="openUpdateForm(task)">
-              Editar
-            </button>
-    
-          }
-          
-          @if (task.user) {
-            <div class="task-actions">
-              
-              <div class="task-owner">
-                Owner: {{ task.user.username }}
+          <mat-card-content>
+              <div class="task-title">
+                  {{ task.name }}
               </div>
-            </div>
-          }
-        </mat-card-content>
+
+              <div class="task-actions">
+                  @if(task.status.name != 'Finished'){
+                      <button mat-button color="primary" (click)="openUpdateForm(task)" class="edit-button">
+                          Editar
+                      </button>
+                  }
+                  @if (task.user) {
+                      <div class="task-owner">
+                          Owner: {{ task.user.username }}
+                      </div>
+                  }
+              </div>
+          </mat-card-content>
       </mat-card>
-    }
-  </div>
+  }
+</div>

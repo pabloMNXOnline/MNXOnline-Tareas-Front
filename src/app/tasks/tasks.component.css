@@ -1,63 +1,89 @@
 .task-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  transition: box-shadow 0.3s;
+  cursor: grab;
+  margin: 10px;
+  color: #000;
   position: relative;
-  text-align: center;
-  padding-bottom: 50px;
 }
 
 .label-container {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 5px;
+  left: 5px;
   display: flex;
   flex-wrap: wrap;
 }
 
 .label-sticker {
-  padding: 2px 8px;
-  margin: 2px 4px;
+  padding: 2px 6px;
+  margin: 2px 3px;
   border-radius: 4px;
-  color: black;
-  font-size: 12px;
+  color: #fff;
+  font-size: 10px;
   white-space: nowrap;
 }
 
 .task-title {
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  text-align: center;
 }
 
 .task-actions {
   position: absolute;
-  bottom: 10px;
-  left: 0;
-  right: 0;
+  bottom: 5px;
+  right: 5px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: column; /* Alineación vertical */
+  align-items: flex-end; /* Alineación a la derecha */
 }
 
 .task-owner {
   font-style: italic;
   margin-top: 5px;
+  font-size: 12px;
 }
 
 mat-card-content {
-  margin-top: 30px;
+  margin-top: 25px;
 }
 
 /* Colores de fondo según el estado */
 .status-todo {
-  background-color: #ffe0e0; /* Rojo claro */
+  background-color: #ffe0e0;
 }
 
 .status-in-process {
-  background-color: #fffacd; /* Amarillo claro */
+  background-color: #fffacd;
 }
 
 .status-under-review {
-  background-color: #e0ffe0; /* Verde claro */
+  background-color: #e0ffe0;
 }
 
-status-finished {
-  background-color: #90ee90; /* Verde */
+.status-finished {
+  background-color: #90ee90;
 }
+
+/* Estilo de los botones */
+.edit-button {
+  background-color: #F38C79;
+  color: #fff;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 5px; /* Margen inferior para separarlo del Owner */
+  display: none; /* Ocultar inicialmente */
+}
+
+.task-card:hover .edit-button {
+  display: block; /* Mostrar al hacer hover */
+}
+
+

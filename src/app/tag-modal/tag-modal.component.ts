@@ -31,7 +31,7 @@ export class TagModalComponent {
     this.tagForm = this.fb.group({
       name: [''],
       color: ['#ffffff'],
-      project: ['67e5235cfdbbf39f531c34fb']
+      project: ['67e67ba92d4890a084606415']
     });
   }
 

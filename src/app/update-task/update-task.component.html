@@ -2,7 +2,7 @@
 <div mat-dialog-content>
   <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="outline" class="full-width">
-      <input matInput placeholder="Título" formControlName="name">
+      <input matInput placeholder="Título" formControlName="name" [disabled]="taskForm.get('status')?.value != '67e52395fdbbf39f531c34fe'">
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
@@ -12,10 +12,10 @@
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Estado actual: {{ getStatusLabel(taskForm.value.status) }}</mat-label>
       <mat-select formControlName="status">
-        <mat-option value="67e52395fdbbf39f531c34fe">To Do</mat-option>
-        <mat-option value="67e5239efdbbf39f531c3500">In Process</mat-option>
-        <mat-option value="67e523a8fdbbf39f531c3502">Under Review</mat-option>
-        <mat-option value="67e523adfdbbf39f531c3504">Finished</mat-option>
+        <mat-option value="67e67c1b2d4890a08460641b">To Do</mat-option>
+        <mat-option value="67e67c222d4890a08460641d">In Process</mat-option>
+        <mat-option value="67e67c2a2d4890a08460641f">Under Review</mat-option>
+        <mat-option value="67e67c2f2d4890a084606421">Finished</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -32,7 +32,7 @@
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Propietario de la tarea</mat-label>
-      <mat-select formControlName="user">
+      <mat-select formControlName="user" [disabled]="taskForm.get('status')?.value != '67e52395fdbbf39f531c34fe'">
         <mat-option [value]="null">
           <em>Sin propietario</em>
         </mat-option>
@@ -45,10 +45,8 @@
     </mat-form-field>
 
     <div class="button-container">
+      <button mat-button class="cancel-button" type="button" (click)="onCancel()">Cancelar</button>
       <button mat-raised-button color="primary" type="submit" class="save-button">Guardar</button>
     </div>
   </form>
-  <div class="button-container">
-    <button mat-button class="cancel-button" (click)="onCancel()">Cancelar</button>
-  </div>
 </div>

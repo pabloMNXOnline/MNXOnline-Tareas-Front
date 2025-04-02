@@ -3,19 +3,42 @@
   margin-bottom: 20px;
 }
 
-.save-button {
-  background-color: green;
-  color: white;
-  float: right;
-}
-
-.cancel-button {
-  color: red;
-  float: left;
+mat-dialog-content{
+  margin: 500px;
 }
 
 .button-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end; /* Alinea los botones a la derecha */
+  margin-top: 20px; /* Agrega un margen superior para separarlos del formulario */
 }
 
+.button-container button { /* Estilos comunes para ambos botones */
+    margin: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.button-container button[type="submit"] { /* Estilos específicos para el botón "Guardar" */
+    background-color: #1976d2; /* Fondo azul */
+    color: white; /* Texto blanco */
+}
+
+.button-container button:not([type="submit"]) { /* Estilos específicos para el botón "Cancelar" */
+    background-color: #f0f0f0; /* Fondo gris claro */
+    color: #333; /* Texto gris oscuro */
+}
+
+.button-container button:hover {
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+    transition: all 0.2s ease-in-out;
+}
+
+.button-container button:active {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    transform: translateY(2px);
+    transition: all 0.1s ease-in-out;
+}

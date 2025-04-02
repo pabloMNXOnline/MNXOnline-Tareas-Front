@@ -6,12 +6,13 @@ import { TaskModalsComponent } from '../task-modals/task-modals.component'
 import { MatButtonModule } from '@angular/material/button';
 import { ProjectsService } from './projects.service';
 import { TagModalComponent } from '../tag-modal/tag-modal.component';
+import { CommonModule } from '@angular/common';
 
 
 export interface Project {
   id: string;
   name: string;
-  user: string;
+  user: any;
   colaborators: Object[];
 }
 
@@ -19,7 +20,7 @@ export interface Project {
 
 @Component({
   selector: 'app-projects',
-  imports: [StatusesComponent, TaskModalsComponent, MatButtonModule, TagModalComponent],
+  imports: [StatusesComponent, TaskModalsComponent, MatButtonModule, TagModalComponent, CommonModule],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.css'
 })
@@ -29,7 +30,7 @@ export class ProjectsComponent implements OnInit {
   private readonly projectsService = inject(ProjectsService)
 
   ngOnInit(): void {
-    this.projectsService.getProjectById('67e5235cfdbbf39f531c34fb').subscribe((project:any) => {
+    this.projectsService.getProjectById('67e67ba92d4890a084606415').subscribe((project:any) => {
       this.project = project;
       console.log("hola",this.project)
     })

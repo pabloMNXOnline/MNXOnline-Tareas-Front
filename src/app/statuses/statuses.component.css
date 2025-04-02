@@ -3,7 +3,7 @@
   display: flex;
   gap: 20px;
   padding: 20px;
-  background-color: #f4f5f7;
+  background-color: #034C53; /* Verde azulado oscuro */
   height: calc(70vh);
   align-items: stretch;
   justify-content: space-between;
@@ -11,55 +11,89 @@
 
 /* Cada columna */
 .status-container {
-  background: #ebecf0;
+  background: #007074; /* Verde azulado medio */
   border-radius: 8px;
-  padding: 10px;
+  padding: 15px; /* Aumentamos el padding */
   flex: 1;
   min-width: 200px;
   max-width: 25%;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 95%;
+  color: #fff; /* Texto blanco para contraste */
 }
 
 /* Título de cada columna */
 .status-container h2 {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   padding: 10px;
-  color: #333;
+  color: #f3c7be; /* Salmón claro para el título */
+  border-bottom: 2px solid #F38C79; /* Salmón oscuro para el separador */
 }
 
 /* Contenedor de tareas dentro de cada columna */
 .tasks-container {
-  display: block; /* Cambiamos display a block */
+  display: block;
   overflow-y: auto;
-  max-height: calc(100vh - 200px);
-  padding-bottom: 5px;
+  max-height: calc(100% - 80px); /* Ajustamos la altura */
+  padding-bottom: 10px;
 }
 
 /* Tarjetas de tareas */
 .task-card {
-  background: white;
+  background: #fff;
   border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  padding: 12px;
-  transition: box-shadow 0.2s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  transition: box-shadow 0.3s;
   cursor: grab;
-  margin-bottom: 20px; /* Aumentamos el margen inferior */
+  margin-bottom: 15px;
+  color: #000; /* Texto negro */
+  margin: 10px; /* Margen entre tarjetas */
 }
 
 /* Efecto hover en las tarjetas */
 .task-card:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 .filters-container {
   display: flex;
-  gap: 10px; /* Espacio entre los filtros */
-  align-items: center; /* Alineación vertical */
+  gap: 15px;
+  align-items: center;
+  padding: 10px;
+  background-color: #034C53; /* Mantenemos el fondo */
 }
 
+.filters-container mat-form-field {
+  width: 200px;
+}
 
+.filters-container mat-label {
+  font-size: 14px;
+  color: #fff; /* Texto blanco para las etiquetas */
+}
+
+.filters-container mat-select {
+  font-size: 14px;
+  color: #fff; /* Texto blanco para las selecciones */
+}
+
+.filters-container .mat-select-value {
+  color: #fff; /* Texto blanco para el valor seleccionado */
+}
+
+.filters-container .mat-select-arrow {
+  color: #fff; /* Color blanco para el icono de flecha */
+}
+
+.filters-container .mat-select-panel {
+  background-color: #fff; /* Fondo blanco para el panel de selección */
+}
+
+.filters-container .mat-option {
+  color: #333; /* Texto oscuro para las opciones */
+}

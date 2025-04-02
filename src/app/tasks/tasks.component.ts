@@ -35,8 +35,8 @@ export class TasksComponent implements OnInit {
       (datosProyecto) => {
         console.log("Estos son los datos del proyecto ", datosProyecto);
         this.dialog.open(UpdateTaskComponent, {
-          maxWidth: '80vw',
-          maxHeight: '80vh', 
+          maxWidth: '120vw',
+          maxHeight: '120vh', 
           panelClass: 'custom-dialog',
           data: { ...task, id: this.selectedTaskId, projectUsers: datosProyecto }
         });

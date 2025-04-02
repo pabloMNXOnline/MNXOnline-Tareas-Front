@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 interface Project {
     id: string;
     name: string;
-    user: string;
+    user: any;
     colaborators:Object[];
 }
 
@@ -18,7 +18,7 @@ export class ProjectsService {
     private readonly http = inject(HttpClient)
 
     public getProjectUsers(): Observable<Project>{
-        return this.http.get<Project>('http://localhost:3000/projects/67e5235cfdbbf39f531c34fb/users')
+        return this.http.get<Project>('http://localhost:3000/projects/67e67ba92d4890a084606415/users')
     }
 
     public getProjectById(id : string) : Observable<Project>{

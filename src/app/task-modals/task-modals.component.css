@@ -49,6 +49,7 @@
     background-color: #1976d2 !important;
     color: white !important;
     border-radius: 8px;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
 }
 
 button.mat-raised-button:hover, button.mat-button:hover {

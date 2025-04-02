@@ -33,9 +33,9 @@ export class TaskModalsComponent {
     this.taskForm = this.fb.group({
       name: [''],
       description: [''],
-      status: ['67e52395fdbbf39f531c34fe'],
+      status: ['67e67c1b2d4890a08460641b'],
       user: [null],
-      project: ['67e5235cfdbbf39f531c34fb']
+      project: ['67e67ba92d4890a084606415']
     });
   }
 
