@@ -1,7 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs'; 
-
+import { Observable } from 'rxjs';
 
 interface Label {
   id: string;
@@ -11,21 +10,22 @@ interface Label {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TagModalService {
+  private readonly http = inject(HttpClient);
 
-  private readonly http = inject(HttpClient)
-
-  public createTag(label: Label): Observable<Label>{
-    return this.http.post<Label>('http://localhost:3000/labels',label);
+  public createTag(label: Label): Observable<Label> {
+    return this.http.post<Label>('http://localhost:3000/labels', label);
   }
 
-  public updateTag(id:string,label:Label): Observable<Label>{
-    return this.http.patch<Label>(`http://localhost:3000/labels/${id}`,label);
+  public updateTag(id: string, label: Label): Observable<Label> {
+    return this.http.patch<Label>(`http://localhost:3000/labels/${id}`, label);
   }
 
-  public getTagByProject(id: string): Observable <Label[]>{
-    return this.http.get<Label[]>('http://localhost:3000/labels/project/67e67ba92d4890a084606415');
+  public getTagByProject(id: string): Observable<Label[]> {
+    return this.http.get<Label[]>(
+      'http://localhost:3000/labels/project/67e67ba92d4890a084606415'
+    );
   }
 }

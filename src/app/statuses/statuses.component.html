@@ -21,50 +21,74 @@
 </div>
 
 <div class="statuses-container">
-    
-  
-    <div class="status-container">
-      <h2>To Do</h2>
-      <div class="tasks-container" [ngClass]="{ 'scrollable': filtered_toDo.length > 5 }">
-        @if (filtered_toDo.length > 0) {
-          <app-tasks [tasks]="filtered_toDo"></app-tasks>
-        } @else {
-          <p>No hay tareas en To Do.</p>
-        }
-      </div>
-    </div>
-  
-    <div class="status-container">
-      <h2>In Process</h2>
-      <div class="tasks-container" [ngClass]="{ 'scrollable': filtered_inProcess.length > 5 }">
-        @if (filtered_inProcess.length > 0) {
-          <app-tasks [tasks]="filtered_inProcess"></app-tasks>
-        } @else {
-          <p>No hay tareas en In Process.</p>
-        }
-      </div>
-    </div>
-  
-    <div class="status-container">
-      <h2>Under Review</h2>
-      <div class="tasks-container">
-        @if (filtered_underReview.length > 0) {
-          <app-tasks [tasks]="filtered_underReview"></app-tasks>
-        } @else {
-          <p>No hay tareas en Under Review.</p>
-        }
-      </div>
-    </div>
-  
-    <div class="status-container">
-      <h2>Finished</h2>
-      <div class="tasks-container">
-        @if (filtered_finished.length > 0) {
-          <app-tasks [tasks]="filtered_finished"></app-tasks>
-        } @else {
-          <p>No hay tareas en Finished.</p>
-        }
+  <!-- To Do -->
+  <div class="status-container">
+    <h2>To Do</h2>
+    <div
+      class="tasks-container"
+      cdkDropList
+      [cdkDropListData]="filtered_toDo"
+      [cdkDropListConnectedTo]="['inProcessList', 'underReviewList', 'finishedList']"
+      (cdkDropListDropped)="onTaskDrop($event, 'toDo')"
+      id="toDoList"
+    >
+      <div *ngFor="let task of filtered_toDo" cdkDrag>
+        <app-tasks [tasks]="[task]"></app-tasks>
       </div>
     </div>
   </div>
+
+  <!-- In Process -->
+  <div class="status-container">
+    <h2>In Process</h2>
+    <div
+      class="tasks-container"
+      cdkDropList
+      [cdkDropListData]="filtered_inProcess"
+      [cdkDropListConnectedTo]="['toDoList', 'underReviewList', 'finishedList']"
+      (cdkDropListDropped)="onTaskDrop($event, 'inProcess')"
+      id="inProcessList"
+    >
+      <div *ngFor="let task of filtered_inProcess" cdkDrag>
+        <app-tasks [tasks]="[task]"></app-tasks>
+      </div>
+    </div>
+  </div>
+
+  <!-- Under Review -->
+  <div class="status-container">
+    <h2>Under Review</h2>
+    <div
+      class="tasks-container"
+      cdkDropList
+      [cdkDropListData]="filtered_underReview"
+      [cdkDropListConnectedTo]="['toDoList', 'inProcessList', 'finishedList']"
+      (cdkDropListDropped)="onTaskDrop($event, 'underReview')"
+      id="underReviewList"
+    >
+      <div *ngFor="let task of filtered_underReview" cdkDrag>
+        <app-tasks [tasks]="[task]"></app-tasks>
+      </div>
+    </div>
+  </div>
+
+  <!-- Finished -->
+  <div class="status-container">
+    <h2>Finished</h2>
+    <div
+      class="tasks-container"
+      cdkDropList
+      [cdkDropListData]="filtered_finished"
+      [cdkDropListConnectedTo]="['toDoList', 'underReviewList', 'inProcessList']"
+      (cdkDropListDropped)="onTaskDrop($event, 'finished')"
+      id="finishedList"
+    >
+      <div *ngFor="let task of filtered_finished" cdkDrag>
+        <app-tasks [tasks]="[task]"></app-tasks>
+      </div>
+    </div>
+  </div>
+</div>
+
+
   
