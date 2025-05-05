@@ -52,9 +52,9 @@ export class TaskModalsComponent {
 
     // 🔹 Llamamos al servicio para guardar la tarea
     this.tasksService.createTask(this.taskForm.value).subscribe({
-      next: (response) => {
-        console.log('Tarea creada:', response);
-        this.dialogRef.close(response);
+      next: (created) => {
+        console.log('Tarea creada:', created);
+        this.dialogRef.close(created);
       },
       error: (error) => console.error('Error al crear la tarea:', error),
     });

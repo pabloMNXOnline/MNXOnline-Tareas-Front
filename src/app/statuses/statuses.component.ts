@@ -42,6 +42,22 @@ export class StatusesComponent implements OnInit {
   @Input() tasks_underReview: any[] = [];
   @Input() tasks_finished: any[] = [];
 
+  private get tasksMap(): Record<string, any[]> {
+    return {
+      toDo: this.tasks_toDo,
+      inProcess: this.tasks_inProcess,
+      underReview: this.tasks_underReview,
+      finished: this.tasks_finished,
+    };
+  }
+
+  private statusMap = {
+    toDo: '67e67c1b2d4890a08460641b',
+    inProcess: '67e67c222d4890a08460641d',
+    underReview: '67e67c2a2d4890a08460641f',
+    finished: '67e67c2f2d4890a084606421',
+  };
+
   filtered_toDo: any[] = [];
   filtered_inProcess: any[] = [];
   filtered_underReview: any[] = [];
@@ -144,16 +160,9 @@ export class StatusesComponent implements OnInit {
   }
 
   addTask(task: any) {
-    switch (task.status) {
-      case '67e67c1b2d4890a08460641b': // ID del estado "To Do"
-        this.tasks_toDo.push(task);
-        break;
-      case 'otro_estado_id': // Reemplaza con otros IDs si quieres
-        this.tasks_inProcess.push(task);
-        break;
-    }
-
-    this.filterTasks(); // vuelve a aplicar los filtros
+    console.log('Añadiendo tarea:', task);
+    this.tasks_toDo.push(task);
+    this.filterTasks(); // si sigues usando filtered_toDo en el template
   }
 
   extractUsersFromProjects(projects: any[]): any[] {
@@ -179,37 +188,27 @@ export class StatusesComponent implements OnInit {
     return users;
   }
 
-  onTaskDrop(event: CdkDragDrop<any[]>, targetStatus: string) {
-    const statusMap = {
-      toDo: this.filtered_toDo,
-      inProcess: this.filtered_inProcess,
-      underReview: this.filtered_underReview,
-      finished: this.filtered_finished,
-    };
-
-    const previousList = event.previousContainer.data;
-    const currentList = event.container.data;
-
+  onTaskDrop(event: CdkDragDrop<any[]>, newStatusId: string) {
     if (event.previousContainer === event.container) {
-      // Mismo contenedor, solo reordenar
-      moveItemInArray(currentList, event.previousIndex, event.currentIndex);
-    } else {
-      // Mover entre columnas
-      transferArrayItem(
-        previousList,
-        currentList,
+      moveItemInArray(
+        event.container.data,
         event.previousIndex,
         event.currentIndex
       );
-
-      const movedTask = currentList[event.currentIndex];
-
-      /*Aquí actualizas el estado de la tarea en backend
-      this.tasksService.updateTaskStatus(movedTask._id, targetStatus).subscribe(updated => {
-        console.log('Estado actualizado:', updated);
-        this.filterTasks(); // Opcional, si quieres refrescar los filtros
-      });
-      */
+      return;
     }
+
+    transferArrayItem(
+      event.previousContainer.data,
+      event.container.data,
+      event.previousIndex,
+      event.currentIndex
+    );
+
+    const task = event.container.data[event.currentIndex];
+    this.tasksService.updateTask(task._id, { status: newStatusId }).subscribe({
+      next: () => console.log('Estado cambiado correctamente'),
+      error: (err) => console.error('Error actualizando estado', err),
+    });
   }
 }

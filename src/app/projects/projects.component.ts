@@ -50,8 +50,12 @@ export class ProjectsComponent implements OnInit {
       data: {},
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
+    dialogRef.afterClosed().subscribe((newTask) => {
+      // Si el usuario canceló, newTask será falsy
+      if (!newTask) return;
+
+      // Llamamos al método público del hijo para añadirla
+      this.statusesComponent.addTask(newTask);
     });
   }
 
