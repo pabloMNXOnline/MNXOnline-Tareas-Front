@@ -6,7 +6,12 @@ import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { ProjectsService } from '../projects/projects.service';
-
+import {
+  CdkDragDrop,
+  DragDropModule,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
 
 export interface Project {
   _id: string;
@@ -16,19 +21,42 @@ export interface Project {
   colaborators: string[];
   personal: boolean;
   __v: number;
-} 
+}
 
 @Component({
   selector: 'app-statuses',
-  imports: [TasksComponent, CommonModule, MatFormFieldModule, MatSelect, MatOption],
+  imports: [
+    TasksComponent,
+    CommonModule,
+    MatFormFieldModule,
+    MatSelect,
+    MatOption,
+    DragDropModule,
+  ],
   templateUrl: './statuses.component.html',
-  styleUrl: './statuses.component.css'
+  styleUrl: './statuses.component.css',
 })
 export class StatusesComponent implements OnInit {
   @Input() tasks_toDo: any[] = [];
   @Input() tasks_inProcess: any[] = [];
   @Input() tasks_underReview: any[] = [];
   @Input() tasks_finished: any[] = [];
+
+  private get tasksMap(): Record<string, any[]> {
+    return {
+      toDo: this.tasks_toDo,
+      inProcess: this.tasks_inProcess,
+      underReview: this.tasks_underReview,
+      finished: this.tasks_finished,
+    };
+  }
+
+  private statusMap = {
+    toDo: '67e67c1b2d4890a08460641b',
+    inProcess: '67e67c222d4890a08460641d',
+    underReview: '67e67c2a2d4890a08460641f',
+    finished: '67e67c2f2d4890a084606421',
+  };
 
   filtered_toDo: any[] = [];
   filtered_inProcess: any[] = [];
@@ -50,7 +78,7 @@ export class StatusesComponent implements OnInit {
       inProcess: this.tasksService.getInProcessTasks(),
       underReview: this.tasksService.getUnderRevisionTasks(),
       finished: this.tasksService.getFinishedTasks(),
-      projects: this.projectsService.getProjectUsers()
+      projects: this.projectsService.getProjectUsers(),
     }).subscribe(({ toDo, inProcess, underReview, finished, projects }) => {
       this.tasks_toDo = toDo;
       this.tasks_inProcess = inProcess;
@@ -58,14 +86,25 @@ export class StatusesComponent implements OnInit {
       this.tasks_finished = finished;
       this.allUsers = this.extractUsersFromProjects([projects]);
       this.filterTasks();
-      this.allLabels = this.extractLabels([...toDo, ...inProcess, ...underReview, ...finished]);
-      console.log('Tareas cargadas:', { toDo, inProcess, underReview, finished, users: this.allUsers });
+      this.allLabels = this.extractLabels([
+        ...toDo,
+        ...inProcess,
+        ...underReview,
+        ...finished,
+      ]);
+      console.log('Tareas cargadas:', {
+        toDo,
+        inProcess,
+        underReview,
+        finished,
+        users: this.allUsers,
+      });
     });
   }
 
   extractLabels(tasks: any[]): any[] {
     const labelsMap = new Map();
-    tasks.forEach(task => {
+    tasks.forEach((task) => {
       if (task.labels) {
         task.labels.forEach((label: any) => {
           labelsMap.set(label._id, label);
@@ -78,55 +117,64 @@ export class StatusesComponent implements OnInit {
   filterTasks(): void {
     this.filtered_toDo = this.filterTasksByFilters(this.tasks_toDo);
     this.filtered_inProcess = this.filterTasksByFilters(this.tasks_inProcess);
-    this.filtered_underReview = this.filterTasksByFilters(this.tasks_underReview);
+    this.filtered_underReview = this.filterTasksByFilters(
+      this.tasks_underReview
+    );
     this.filtered_finished = this.filterTasksByFilters(this.tasks_finished);
   }
-  
+
   filterTasksByFilters(tasks: any[]): any[] {
-    return tasks.filter(task => {
+    return tasks.filter((task) => {
       // Filtrado por usuario
-      const userMatches = !this.selectedOwnerId || task.user?._id === this.selectedOwnerId._id;
-  
+      const userMatches =
+        !this.selectedOwnerId || task.user?._id === this.selectedOwnerId._id;
+
       // Filtrado por etiqueta
-      const labelMatches = !this.selectedLabelId || task.labels?.some((label: any) => label._id === this.selectedLabelId);
-  
+      const labelMatches =
+        !this.selectedLabelId ||
+        task.labels?.some((label: any) => label._id === this.selectedLabelId);
+
       return userMatches && labelMatches;
     });
   }
-  
-  
+
   filterTasksByOwner(tasks: any[]): any[] {
-    console.log("Filtrando tareas. selectedOwnerId:", this.selectedOwnerId);
-    console.log("Tareas antes de filtrar:", tasks);
-  
-    if (!this.selectedOwnerId || typeof this.selectedOwnerId !== 'object' || !this.selectedOwnerId._id) {
-      console.log("No hay filtro activo, devolviendo todas las tareas.");
+    console.log('Filtrando tareas. selectedOwnerId:', this.selectedOwnerId);
+    console.log('Tareas antes de filtrar:', tasks);
+
+    if (
+      !this.selectedOwnerId ||
+      typeof this.selectedOwnerId !== 'object' ||
+      !this.selectedOwnerId._id
+    ) {
+      console.log('No hay filtro activo, devolviendo todas las tareas.');
       return tasks;
     }
-  
-    const filteredTasks = tasks.filter(task => task.user?._id === this.selectedOwnerId!._id);
-    
-    console.log("Tareas después de filtrar:", filteredTasks);
+
+    const filteredTasks = tasks.filter(
+      (task) => task.user?._id === this.selectedOwnerId!._id
+    );
+
+    console.log('Tareas después de filtrar:', filteredTasks);
     return filteredTasks;
   }
 
-
-  
-  
-  
-  
-  
+  addTask(task: any) {
+    console.log('Añadiendo tarea:', task);
+    this.tasks_toDo.push(task);
+    this.filterTasks(); // si sigues usando filtered_toDo en el template
+  }
 
   extractUsersFromProjects(projects: any[]): any[] {
     const users: any[] = [];
     const userIds: Set<string> = new Set();
-  
-    projects.forEach(project => {
+
+    projects.forEach((project) => {
       if (project.user && !userIds.has(project.user)) {
         users.push({ _id: { id: project.user } }); // Crea un objeto de usuario con solo el ID
         userIds.add(project.user);
       }
-  
+
       if (project.colaborators) {
         project.colaborators.forEach((collaborator: string) => {
           if (!userIds.has(collaborator)) {
@@ -136,7 +184,31 @@ export class StatusesComponent implements OnInit {
         });
       }
     });
-  
+
     return users;
+  }
+
+  onTaskDrop(event: CdkDragDrop<any[]>, newStatusId: string) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+      return;
+    }
+
+    transferArrayItem(
+      event.previousContainer.data,
+      event.container.data,
+      event.previousIndex,
+      event.currentIndex
+    );
+
+    const task = event.container.data[event.currentIndex];
+    this.tasksService.updateTask(task._id, { status: newStatusId }).subscribe({
+      next: () => console.log('Estado cambiado correctamente'),
+      error: (err) => console.error('Error actualizando estado', err),
+    });
   }
 }
