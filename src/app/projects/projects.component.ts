@@ -7,6 +7,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { ProjectsService } from './projects.service';
 import { TagModalComponent } from '../tag-modal/tag-modal.component';
 import { CommonModule } from '@angular/common';
+import { AuthService }     from '../auth/auth.service';
+import { Router } from '@angular/router';
+import { MatIconModule }     from '@angular/material/icon';
 
 export interface Project {
   id: string;
@@ -19,10 +22,9 @@ export interface Project {
   selector: 'app-projects',
   imports: [
     StatusesComponent,
-    TaskModalsComponent,
     MatButtonModule,
-    TagModalComponent,
     CommonModule,
+    MatIconModule,
   ],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.css',
@@ -33,6 +35,8 @@ export class ProjectsComponent implements OnInit {
   @ViewChild(StatusesComponent) statusesComponent!: StatusesComponent;
 
   private readonly projectsService = inject(ProjectsService);
+  private readonly auth = inject(AuthService);
+  private readonly router = inject(Router);
 
   ngOnInit(): void {
     this.projectsService
@@ -73,5 +77,10 @@ export class ProjectsComponent implements OnInit {
         this.statusesComponent.addTask(result); // 👈 aquí le pasas la tarea al hijo
       }
     });
+  }
+
+  onLogout(): void {
+    this.auth.logout();
+    this.router.navigate(['/login']);
   }
 }
