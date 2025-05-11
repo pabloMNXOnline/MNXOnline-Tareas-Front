@@ -22,7 +22,7 @@ export class LoginComponent {
 
   onSubmit() {
     this.auth.login(this.username, this.password).subscribe({
-      next: () => this.router.navigate(['/projects']),
+      next: () => this.router.navigate(['/select-projects']),
       error: () => alert('Credenciales inválidas'),
     });
   }

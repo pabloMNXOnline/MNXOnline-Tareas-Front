@@ -1,52 +1,58 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { StatusesComponent } from '../statuses/statuses.component';
-import { inject } from '@angular/core';
-import { TaskModalsComponent } from '../task-modals/task-modals.component';
-import { MatButtonModule } from '@angular/material/button';
-import { ProjectsService } from './projects.service';
-import { TagModalComponent } from '../tag-modal/tag-modal.component';
-import { CommonModule } from '@angular/common';
-import { AuthService }     from '../auth/auth.service';
-import { Router } from '@angular/router';
-import { MatIconModule }     from '@angular/material/icon';
+// src/app/projects/projects.component.ts
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
+import { Router }                from '@angular/router';
+import { MatDialog }             from '@angular/material/dialog';
+import { MatButtonModule }       from '@angular/material/button';
+import { MatIconModule }         from '@angular/material/icon';
+import { CommonModule }          from '@angular/common';
 
-export interface Project {
-  id: string;
-  name: string;
-  user: any;
-  colaborators: Object[];
-}
+import { StatusesComponent }     from '../statuses/statuses.component';
+import { TaskModalsComponent }   from '../task-modals/task-modals.component';
+import { TagModalComponent }     from '../tag-modal/tag-modal.component';
+import { ProjectsService, Project } from './projects.service';
+import { AuthService }           from '../auth/auth.service';
 
 @Component({
   selector: 'app-projects',
+  standalone: true,    // ← necesario para usar `imports` aquí
   imports: [
+    CommonModule,
     StatusesComponent,
     MatButtonModule,
-    CommonModule,
     MatIconModule,
   ],
   templateUrl: './projects.component.html',
-  styleUrl: './projects.component.css',
+  styleUrls: ['./projects.component.css'],  // ← plural
 })
 export class ProjectsComponent implements OnInit {
-  @Input() project?: Project;
-
   @ViewChild(StatusesComponent) statusesComponent!: StatusesComponent;
 
-  private readonly projectsService = inject(ProjectsService);
-  private readonly auth = inject(AuthService);
-  private readonly router = inject(Router);
+  project?: Project;  
+  username: string | null = localStorage.getItem('username');
+
+  private projectsService = inject(ProjectsService);
+  private auth            = inject(AuthService);
+  private router          = inject(Router);
+
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.projectsService
-      .getProjectById('67e67ba92d4890a084606415')
-      .subscribe((project: any) => {
+    const projectId = localStorage.getItem('selected_project_id');
+    if (!projectId) {
+      console.error('No hay ningún proyecto seleccionado');
+      return;
+    }
+
+    this.projectsService.getProjectById(projectId).subscribe({
+      next: project => {
         this.project = project;
-        console.log('hola', this.project);
-      });
+        console.log('Proyecto cargado:', this.project);
+      },
+      error: err => {
+        console.error('Error al cargar proyecto:', err);
+      }
+    });
   }
-  constructor(public dialog: MatDialog) {}
 
   openDialog(): void {
     const dialogRef = this.dialog.open(TaskModalsComponent, {
@@ -54,28 +60,19 @@ export class ProjectsComponent implements OnInit {
       data: {},
     });
 
-    dialogRef.afterClosed().subscribe((newTask) => {
-      // Si el usuario canceló, newTask será falsy
-      if (!newTask) return;
-
-      // Llamamos al método público del hijo para añadirla
-      this.statusesComponent.addTask(newTask);
+    dialogRef.afterClosed().subscribe(newTask => {
+      if (newTask) this.statusesComponent.addTask(newTask);
     });
   }
 
-  openTagModal() {
+  openTagModal(): void {
     const dialogRef = this.dialog.open(TagModalComponent, {
-      width: '800px', // Ajusta el ancho según sea necesario
-      data: {}, // Puedes pasar datos iniciales al modal si es necesario
+      width: '800px',
+      data: {},
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('Datos de la etiqueta:', result);
-      // Aquí puedes manejar los datos de la etiqueta (result)
-      if (result) {
-        console.log('Tarea creada desde modal:', result);
-        this.statusesComponent.addTask(result); // 👈 aquí le pasas la tarea al hijo
-      }
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) this.statusesComponent.addTask(result);
     });
   }
 
