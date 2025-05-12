@@ -71,10 +71,19 @@ export class UpdateTaskComponent implements OnInit{
     return statusMap[status] || 'Desconocido';
   }
 
-  ngOnInit(): void{
-    this.tagService.getTagByProject('67e5235cfdbbf39f531c34fb').subscribe(labels => { 
-      this.allLabels = labels;
-    });
+  ngOnInit(): void {
+    const projectId = localStorage.getItem('selected_project_id');
+  
+    if (!projectId) {
+      console.error('No hay proyecto seleccionado en localStorage');
+      // aquí puedes redirigir, mostrar un mensaje al usuario, etc.
+      return;
+    }
+  
+    this.tagService.getTagByProject(projectId)
+      .subscribe(labels => {
+        this.allLabels = labels;
+      });
   }
 
   onSubmit() {

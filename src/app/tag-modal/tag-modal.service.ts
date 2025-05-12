@@ -25,7 +25,7 @@ export class TagModalService {
 
   public getTagByProject(id: string): Observable<Label[]> {
     return this.http.get<Label[]>(
-      'http://localhost:3000/labels/project/67e67ba92d4890a084606415'
+      `http://localhost:3000/labels/project/${id}`
     );
   }
 }
