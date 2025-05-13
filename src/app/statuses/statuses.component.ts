@@ -85,7 +85,7 @@ export class StatusesComponent implements OnInit {
     this.tasks_toDo       = toDo.filter(t => t.project === projectId);
     this.tasks_inProcess  = inProcess.filter(t => t.project === projectId);
     this.tasks_underReview= underReview.filter(t => t.project=== projectId);
-    this.tasks_finished   = finished.filter(t => t.project=== projectId);
+    this.tasks_finished   = finished.filter(t => t.project  === projectId);
 
       this.allUsers = this.extractUsersFromProjects([projects]);
       this.filterTasks();
