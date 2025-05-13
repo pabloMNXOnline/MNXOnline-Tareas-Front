@@ -8,7 +8,7 @@ interface Task {
   // El backend te devuelve el ObjectId en `status`
   status: string;
   user_id: string;
-  project_id: object;
+  project: string;
   description: string;
   // Si sigues manejando state_id en otros sitios, déjalo también:
   state_id?: string;

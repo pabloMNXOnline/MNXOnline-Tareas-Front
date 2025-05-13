@@ -2,9 +2,17 @@
     <div class="project-header">
         <h1 class="project-title">{{this.project?.name}}</h1>
         <p class="connected-user"> 
-            <span *ngIf="this.project?.user?.username">
-                Conectado como: {{this.project?.user?.username}}
-            </span>
+            <span *ngIf="project?.user?.username">
+                Conectado como: {{ username }}
+                <button
+                  mat-icon-button
+                  aria-label="Cerrar sesión"
+                  (click)="onLogout()"
+                  title="Cerrar sesión"
+                >
+                  <mat-icon>logout</mat-icon>
+                </button>
+              </span>
         </p>
     </div>
 

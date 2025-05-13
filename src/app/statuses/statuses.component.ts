@@ -73,6 +73,8 @@ export class StatusesComponent implements OnInit {
   private readonly projectsService = inject(ProjectsService);
 
   ngOnInit(): void {
+    const projectId = localStorage.getItem('selected_project_id');
+    
     forkJoin({
       toDo: this.tasksService.getToDoTasks(),
       inProcess: this.tasksService.getInProcessTasks(),
@@ -80,10 +82,11 @@ export class StatusesComponent implements OnInit {
       finished: this.tasksService.getFinishedTasks(),
       projects: this.projectsService.getProjectUsers(),
     }).subscribe(({ toDo, inProcess, underReview, finished, projects }) => {
-      this.tasks_toDo = toDo;
-      this.tasks_inProcess = inProcess;
-      this.tasks_underReview = underReview;
-      this.tasks_finished = finished;
+    this.tasks_toDo       = toDo.filter(t => t.project === projectId);
+    this.tasks_inProcess  = inProcess.filter(t => t.project === projectId);
+    this.tasks_underReview= underReview.filter(t => t.project=== projectId);
+    this.tasks_finished   = finished.filter(t => t.project  === projectId);
+
       this.allUsers = this.extractUsersFromProjects([projects]);
       this.filterTasks();
       this.allLabels = this.extractLabels([

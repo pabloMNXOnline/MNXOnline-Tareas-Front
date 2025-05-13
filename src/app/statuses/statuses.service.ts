@@ -17,9 +17,9 @@ interface Status {
 export class StatusesService {
   private readonly http = inject(HttpClient);
 
-  public getStates(): Observable<Status[]> {
+  public getStates(id : string): Observable<Status[]> {
     return this.http.get<Status[]>(
-      'http://localhost:3000/states/project/67e67ba92d4890a084606415'
+      `http://localhost:3000/states/project/${id}`
     );
   }
 }

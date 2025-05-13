@@ -32,14 +32,15 @@ export class TaskModalsComponent {
     public dialogRef: MatDialogRef<TaskModalsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
-    private tasksService: TasksService // 🔹 Inyectamos correctamente el servicio
+    private tasksService: TasksService// 🔹 Inyectamos correctamente el servicio
   ) {
+    const project = localStorage.getItem('selected_project_id');
     this.taskForm = this.fb.group({
       name: [''],
       description: [''],
       status: ['67e67c1b2d4890a08460641b'],
       user: [null],
-      project: ['67e67ba92d4890a084606415'],
+      project: [project],
     });
   }
 

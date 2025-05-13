@@ -28,10 +28,11 @@ export class TagModalComponent {
     private fb: FormBuilder,
     private tagService: TagModalService,
   ) {
+    const project = localStorage.getItem('selected_project_id');
     this.tagForm = this.fb.group({
       name: [''],
       color: ['#ffffff'],
-      project: ['67e67ba92d4890a084606415']
+      project: [project]
     });
   }
 
