@@ -1,0 +1,11 @@
+<mat-card class="project-card" *ngIf="project" (click)="openProject()">
+    <mat-card-content>
+      <h3 class="project-name">{{ project?.name }}</h3>
+      <p class="project-info">
+        Owner: {{ project?.user }}<br />
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-button color="primary">Abrir</button>
+    </mat-card-actions>
+</mat-card>
+  

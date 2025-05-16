@@ -1,0 +1,52 @@
+
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f5f5f5;
+    padding: 1rem;
+  }
+  
+  .login-card {
+    width: 100%;
+    max-width: 360px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border-radius: 8px;
+  }
+  
+  .logo-container {
+    margin-bottom: 1rem;
+  }
+  
+  .logo {
+    width: 80px;    /* o el ancho que necesites */
+    height: auto;   /* preserva proporción */
+    display: block;
+    margin: 0 auto 1rem;
+  }
+  
+  .full-width {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  h2 {
+    margin: 0 0 1rem;
+    font-weight: 500;
+  }
+  
+  .link {
+    font-size: 0.875rem;
+    text-decoration: none;
+    margin-top: 0.5rem;
+    display: inline-block;
+  }
+  
+  .signup {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  

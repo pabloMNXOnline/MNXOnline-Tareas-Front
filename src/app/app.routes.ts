@@ -18,7 +18,7 @@ export const appRoutes: Routes = [
   {
     path: 'select-projects',
     component: SelectProjectsComponent,
-    canActivate: [AuthGuard],  // si quieres proteger que sólo usuarios logueados accedan
+    canActivate: [AuthGuard], 
   },
 
   // 3) Ruta por defecto: redirige a login

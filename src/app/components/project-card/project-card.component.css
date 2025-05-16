@@ -1,0 +1,48 @@
+.project-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    padding: 1.25rem;
+    min-width: 200px;
+    min-height: 140px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+    border-color: #bdbdbd;
+  }
+  
+  .project-name {
+    margin: 0 0 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #212121;
+    line-height: 1.2;
+  }
+  
+  .project-info {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #757575;
+  }
+  
+  /* Opcional: si quieres un footer con acciones */
+  .project-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+  }
+  
+  .project-footer button {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    padding: 0.4rem 0.8rem;
+  }
+  

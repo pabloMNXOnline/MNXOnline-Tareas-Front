@@ -1,12 +1,39 @@
-<div *ngIf="loading">Cargando proyectos…</div>
-<div *ngIf="error" class="error">{{ error }}</div>
+<div class="select-page">
+  <h1 class="greeting">Bienvenid {{ username }}</h1>
+  <p class="subtitle">Escoge tu proyecto</p>
 
-<ul *ngIf="!loading && !error">
-  <li *ngFor="let p of projects">
-    <a [routerLink]="['/projects']" (click)="selectProject(p)">{{ p.name }}</a>
-  </li>
-</ul>
+  <div *ngIf="loading" class="loading">Cargando proyectos…</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
 
-<div *ngIf="!loading && !error && projects.length === 0">
-  No tienes proyectos asignados.
+  <div
+    class="projects-grid"
+    *ngIf="!loading && !error && projects.length > 0"
+  >
+    <mat-card
+      *ngFor="let p of projects"
+      class="project-card"
+      [routerLink]="['/projects']"
+      (click)="selectProject(p)"
+    >
+      <div class="card-header">
+        <span class="project-name">{{ p.name }}</span>
+      </div>
+    </mat-card>
+  </div>
+
+  <div
+    *ngIf="!loading && !error && projects.length === 0"
+    class="no-projects"
+  >
+    No tienes proyectos asignados.
+  </div>
+
+  <button
+    mat-fab
+    color="primary"
+    class="fab-add"
+    (click)="createProject()"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
 </div>

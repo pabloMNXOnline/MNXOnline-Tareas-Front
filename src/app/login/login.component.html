@@ -1,17 +1,64 @@
-<h2>Iniciar sesión</h2>
-<form (ngSubmit)="onSubmit()">
-  <input
-    [(ngModel)]="username"
-    name="username"
-    placeholder="Usuario"
-    required
-  />
-  <input
-    [(ngModel)]="password"
-    name="password"
-    type="password"
-    placeholder="Contraseña"
-    required
-  />
-  <button type="submit">Entrar</button>
-</form>
+<!-- src/app/login/login.component.html -->
+<div class="login-wrapper">
+  <mat-card class="login-card">
+    <div class="logo-container">
+      <img
+        src="/assets/images/logoTrello-removebg-preview.png"
+        alt="Logo de mi app"
+        class="logo"
+      />
+    </div>
+    <h2>Iniciar sesión</h2>
+
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Username</mat-label>
+        <input
+          matInput
+          type="email"
+          name="username"
+          [(ngModel)]="username"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Contraseña</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          name="password"
+          [(ngModel)]="password"
+          required
+        />
+        <button
+          type="button"
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="hide ? 'Mostrar contraseña' : 'Ocultar contraseña'"
+        >
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="primary"
+        class="full-width"
+        [disabled]="loginForm.invalid"
+        type="submit"
+      >
+        Entrar
+      </button>
+    </form>
+
+    <a mat-button class="link" routerLink="/forgot-password">
+      ¿Olvidaste tu contraseña?
+    </a>
+    <p class="signup">
+      ¿No tienes cuenta?
+      <a routerLink="/register">Crea una nueva</a>
+    </p>
+  </mat-card>
+</div>
