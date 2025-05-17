@@ -1,89 +1,91 @@
-.task-card {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  padding: 10px;
-  transition: box-shadow 0.3s;
-  cursor: grab;
-  margin: 10px;
-  color: #000;
-  position: relative;
+/* — Gradiente morado en la cabecera — */
+.task-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: linear-gradient(90deg, #7F00FF 0%, #E100FF 100%);
 }
 
+/* título */
+.task-title {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* badge de estado */
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+  text-transform: uppercase;
+}
+.status-badge.high   { background-color: #E63946; }
+.status-badge.medium { background-color: #F4A261; }
+.status-badge.low    { background-color: #2A9D8F; }
+
+/* contenedor de labels */
 .label-container {
-  position: absolute;
-  top: 5px;
-  left: 5px;
   display: flex;
   flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px 16px 0;
 }
 
-.label-sticker {
-  padding: 2px 6px;
-  margin: 2px 3px;
-  border-radius: 4px;
+/* “chips” caseros para etiquetas */
+.label-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 500;
   color: #fff;
-  font-size: 10px;
   white-space: nowrap;
 }
 
-.task-title {
-  font-weight: bold;
-  margin-bottom: 10px;
+/* contenido */
+.task-content {
+  padding: 16px;
+  flex: 1;
+}
+.task-content p {
+  margin: 0;
   font-size: 14px;
-  text-align: center;
+  color: rgba(0,0,0,0.87);
 }
 
-.task-actions {
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
+/* footer */
+.task-footer {
   display: flex;
-  flex-direction: column; /* Alineación vertical */
-  align-items: flex-end; /* Alineación a la derecha */
+  align-items: center;
+  padding: 8px 16px;
+  border-top: 1px solid rgba(0,0,0,0.08);
 }
-
+.task-footer mat-icon {
+  font-size: 20px;
+  color: rgba(0,0,0,0.54);
+}
 .task-owner {
-  font-style: italic;
-  margin-top: 5px;
-  font-size: 12px;
+  margin-left: 8px;
+  font-size: 13px;
+  color: rgba(0,0,0,0.6);
+  flex: 1;
+}
+.task-footer button {
+  margin-left: auto;
 }
 
-mat-card-content {
-  margin-top: 25px;
+/* tarjeta base */
+.task-card {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #fff;
+  margin-bottom: 16px;
 }
-
-/* Colores de fondo según el estado */
-.status-todo {
-  background-color: #ffe0e0;
-}
-
-.status-in-process {
-  background-color: #fffacd;
-}
-
-.status-under-review {
-  background-color: #e0ffe0;
-}
-
-.status-finished {
-  background-color: #90ee90;
-}
-
-/* Estilo de los botones */
-.edit-button {
-  background-color: #F38C79;
-  color: #fff;
-  padding: 6px 12px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-bottom: 5px; /* Margen inferior para separarlo del Owner */
-  display: none; /* Ocultar inicialmente */
-}
-
-.task-card:hover .edit-button {
-  display: block; /* Mostrar al hacer hover */
-}
-
-

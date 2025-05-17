@@ -7,11 +7,11 @@ import { FormsModule }          from '@angular/forms';
 import { MatCardModule }        from '@angular/material/card';
 import { MatIconModule }        from '@angular/material/icon';
 import { MatButtonModule }      from '@angular/material/button';
-import { ProjectCardComponent } from '../components/project-card/project-card.component';
+
 
 
 @Component({
-  imports: [CommonModule, RouterLink, FormsModule, MatCardModule, MatIconModule, MatButtonModule,ProjectCardComponent],
+  imports: [CommonModule, RouterLink, FormsModule, MatCardModule, MatIconModule, MatButtonModule],
   selector: 'app-selectprojects',
   templateUrl: './selectprojects.component.html',
   styleUrls: ['./selectprojects.component.css']

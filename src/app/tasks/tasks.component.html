@@ -1,37 +1,50 @@
-<div class="task-board">
-  @for (task of tasks; track task._id) {
-      <mat-card class="task-card" [ngClass]="{
-          'status-todo': task.status.name === 'To do',
-          'status-in-process': task.status.name === 'In Process',
-          'status-under-review': task.status.name === 'Under Review',
-          'status-finished': task.status.name === 'Finished'
-      }">
-          <div class="label-container">
-              @for (label of task.labels; track label._id) {
-                  <div class="label-sticker" [style.backgroundColor]="label.color">
-                      {{ label.name }}
-                  </div>
-              }
-          </div>
+<ng-container *ngFor="let task of tasks; trackBy: trackById">
+  <mat-card class="task-card">
 
-          <mat-card-content>
-              <div class="task-title">
-                  {{ task.name }}
-              </div>
+    <!-- HEADER: título + badge de estado -->
+    <div class="task-card-header">
+      <div class="task-title">{{ task.name }}</div>
+      <span
+        class="status-badge"
+        [ngClass]="{
+          high:   task.status.name === 'High',
+          medium: task.status.name === 'Medium',
+          low:    task.status.name === 'Low'
+        }"
+      >
+        {{ task.status.name }}
+      </span>
+    </div>
 
-              <div class="task-actions">
-                  @if(task.status.name != 'Finished'){
-                      <button mat-button color="primary" (click)="openUpdateForm(task)" class="edit-button">
-                          Editar
-                      </button>
-                  }
-                  @if (task.user) {
-                      <div class="task-owner">
-                          Owner: {{ task.user.username }}
-                      </div>
-                  }
-              </div>
-          </mat-card-content>
-      </mat-card>
-  }
-</div>
+    <!-- NUEVO: etiquetas -->
+    <div class="label-container">
+      <span
+        *ngFor="let label of task.labels"
+        class="label-badge"
+        [style.backgroundColor]="label.color"
+      >
+        {{ label.name }}
+      </span>
+    </div>
+
+    <!-- CONTENIDO: descripción -->
+    <mat-card-content class="task-content">
+      <p>{{ task.description }}</p>
+    </mat-card-content>
+
+    <!-- FOOTER: avatar + usuario + editar -->
+    <mat-card-actions class="task-footer">
+      <mat-icon>person</mat-icon>
+      <span class="task-owner">{{ task.user?.username || 'Sin asignar' }}</span>
+      <button
+        mat-icon-button
+        *ngIf="task.status.name !== 'Finished'"
+        (click)="openUpdateForm(task)"
+        aria-label="Editar"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+    </mat-card-actions>
+
+  </mat-card>
+</ng-container>

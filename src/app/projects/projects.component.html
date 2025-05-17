@@ -1,31 +1,33 @@
-<div class="project-container">
-    <div class="project-header">
-        <h1 class="project-title">{{this.project?.name}}</h1>
-        <p class="connected-user"> 
-            <span *ngIf="project?.user?.username">
-                Conectado como: {{ username }}
-                <button
-                  mat-icon-button
-                  aria-label="Cerrar sesión"
-                  (click)="onLogout()"
-                  title="Cerrar sesión"
-                >
-                  <mat-icon>logout</mat-icon>
-                </button>
-              </span>
-        </p>
-    </div>
+<mat-toolbar class="project-toolbar">
+  <!-- izquierda (puedes dejarlo vacío o meter un logo) -->
+  <div class="toolbar-section"></div>
 
-    <div class="header-actions">
-        <button mat-raised-button color="primary" class="new-task-btn" (click)="openDialog()">
-            + Nueva Tarea
-        </button>
-        <button mat-raised-button color="primary" class="new-tag-btn" (click)="openTagModal()">
-            + Nueva Etiqueta
-        </button>
-    </div>
+  <!-- centro (título del proyecto) -->
+  <div class="toolbar-section toolbar-center">
+    <span class="toolbar-title">{{ project?.name }}</span>
+  </div>
 
-    <div class="statuses-container">
-        <app-statuses></app-statuses>
-    </div>
-</div>
+  <!-- derecha: acciones y usuario -->
+  <div class="toolbar-section toolbar-right">
+    <button mat-mini-fab color="primary" aria-label="Nueva tarea" (click)="openDialog()">
+      <mat-icon>add</mat-icon>
+    </button>
+    <button mat-mini-fab color="accent" aria-label="Nueva etiqueta" (click)="openTagModal()">
+      <mat-icon>label</mat-icon>
+    </button>
+
+    <button mat-button [matMenuTriggerFor]="userMenu" class="user-button">
+      <mat-icon>person</mat-icon>
+      <span class="username">{{ username }}</span>
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+    <mat-menu #userMenu="matMenu">
+      <button mat-menu-item (click)="onLogout()">
+        <mat-icon>logout</mat-icon>
+        <span>Desconectar</span>
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>
+
+<app-statuses class="statuses-container"></app-statuses>

@@ -1,31 +1,108 @@
-.project-container{
-  padding: 16px;
-}
-.project-header {
-  text-align: center;
+/* projects.component.css */
 
-}
+/* —————————————————————————————————————————————————————————— */
+/* TOOLBAR PRINCIPAL: ocupa todo el ancho con degradado morado */
+/* —————————————————————————————————————————————————————————— */
+.project-toolbar {
+  /* full-width sobre un contenedor centrado */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
 
-.project-title {
-  font-size: 28px;
-  color: #3f51b5; /* Color azul para el título */
-  font-family: 'Arial', sans-serif; /* Cambiar la fuente */
-}
-
-.header-actions {
   display: flex;
-  margin-bottom: 8px;
-  justify-content: center; /* Centrar los botones */
+  justify-content: space-between;
+  align-items: center;
+
+  /* degradado de indigo a morado oscuro */
+  background: linear-gradient(
+    90deg,
+    #4B0082 0%,    /* Indigo */
+    #300060 100%   /* Morado muy oscuro */
+  );
+  color: #ffffff;
+
+  padding: 0 32px;
+  height: 64px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+  /* fija al top si quieres scroll bajo él */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-.header-actions button {
-  margin: 0 10px; /* Espacio entre los botones */
+/* Cada sección (izquierda, centro, derecha) */
+.toolbar-section {
+  display: flex;
+  align-items: center;
 }
 
-.connected-user {
-  text-align: right;
-  font-size: 14px; /* Reduce el tamaño de la fuente */
-  padding: 2px 5px; /* Reduce el padding */
-  margin: 0; /* Elimina el margen */
-  white-space: nowrap; /* Evita el salto de línea */
+/* Centro: título ocupa todo el espacio entre izq y dcha */
+.toolbar-center {
+  flex: 1;
+  justify-content: center;
+}
+
+/* Derecha: margen entre cada elemento */
+.toolbar-right > * {
+  margin-left: 12px;
+}
+
+/* —————————————————————————————————————————————————————————— */
+/* TÍTULO DEL PROYECTO */
+/* —————————————————————————————————————————————————————————— */
+.toolbar-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #e1bee7;  /* lila claro para contraste */
+}
+
+/* —————————————————————————————————————————————————————————— */
+/* BOTONES MINI-FAB (“+ nueva tarea”, “+ nueva etiqueta”) */
+/* —————————————————————————————————————————————————————————— */
+.project-toolbar button.mat-mini-fab {
+  background: rgba(255, 255, 255, 0.15);
+}
+.project-toolbar button.mat-mini-fab:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* —————————————————————————————————————————————————————————— */
+/* BOTÓN DE USUARIO + MENÚ */
+/* —————————————————————————————————————————————————————————— */
+.user-button {
+  background-color: #ffffff;
+  color: #4B0082;
+  text-transform: none;
+  padding: 6px 12px;
+  margin-left: 16px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s;
+}
+.user-button:hover {
+  background-color: #f0f0f0;
+}
+.user-button mat-icon:first-child {
+  margin-right: 6px;
+  font-size: 20px;
+}
+.user-button .username {
+  margin: 0 4px;
+  font-size: 14px;
+}
+
+/* —————————————————————————————————————————————————————————— */
+/* CONTENEDOR DE LAS COLUMNAS (app-statuses) */
+/* —————————————————————————————————————————————————————————— */
+.statuses-container {
+  margin: 16px auto;
+  padding: 0 32px;
+  max-width: 1200px;
+  box-sizing: border-box;
+}
+
+/* Si quieres un poco de separación entre toolbar y filtros */
+.filters-container {
+  margin-top: 80px; /* ajusta según la altura de tu toolbar */
 }

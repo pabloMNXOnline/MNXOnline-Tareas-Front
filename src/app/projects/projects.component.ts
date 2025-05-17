@@ -5,12 +5,13 @@ import { MatDialog }             from '@angular/material/dialog';
 import { MatButtonModule }       from '@angular/material/button';
 import { MatIconModule }         from '@angular/material/icon';
 import { CommonModule }          from '@angular/common';
-
 import { StatusesComponent }     from '../statuses/statuses.component';
 import { TaskModalsComponent }   from '../task-modals/task-modals.component';
 import { TagModalComponent }     from '../tag-modal/tag-modal.component';
 import { ProjectsService, Project } from './projects.service';
 import { AuthService }           from '../auth/auth.service';
+import { MatToolbarModule }  from '@angular/material/toolbar';
+import { MatMenuModule }     from '@angular/material/menu';
 
 @Component({
   selector: 'app-projects',
@@ -20,6 +21,9 @@ import { AuthService }           from '../auth/auth.service';
     StatusesComponent,
     MatButtonModule,
     MatIconModule,
+    MatToolbarModule,
+    MatMenuModule,
+
   ],
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.css'],  // ← plural

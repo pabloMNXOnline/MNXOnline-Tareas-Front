@@ -12,6 +12,7 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
+import { MatButtonModule } from '@angular/material/button';
 
 export interface Project {
   _id: string;
@@ -32,6 +33,7 @@ export interface Project {
     MatSelect,
     MatOption,
     DragDropModule,
+    MatButtonModule
   ],
   templateUrl: './statuses.component.html',
   styleUrl: './statuses.component.css',

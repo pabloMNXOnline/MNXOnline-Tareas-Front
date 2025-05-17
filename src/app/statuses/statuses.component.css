@@ -1,99 +1,63 @@
 /* Contenedor padre de las columnas */
 .statuses-container {
   display: flex;
-  gap: 20px;
-  padding: 20px;
-  background-color: #034C53; /* Verde azulado oscuro */
-  height: calc(70vh);
-  align-items: stretch;
-  justify-content: space-between;
+  gap: 16px;
+  padding: 16px;
+  background-color: #f5f5f5;
+
+  /* aquí cambiamos min-height por un height proporcional */
+  height: 67vh;
+  overflow-x: auto;  /* por si quisieras scroll en móvil */
 }
 
-/* Cada columna */
-.status-container {
-  background: #007074; /* Verde azulado medio */
-  border-radius: 8px;
-  padding: 15px; /* Aumentamos el padding */
-  flex: 1;
-  min-width: 200px;
-  max-width: 25%;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+/* 2) Cada columna crece/encoge para llenar ese 80vh */
+.status-column {
+  flex: 1 1 0;
   display: flex;
   flex-direction: column;
-  height: 95%;
-  color: #fff; /* Texto blanco para contraste */
+
+  /* ocupan toda la altura de su padre */
+  height: 100%;
+  min-height: 0;    /* para que el flex interno no desborde */
 }
 
-/* Título de cada columna */
-.status-container h2 {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 15px;
-  padding: 10px;
-  color: #f3c7be; /* Salmón claro para el título */
-  border-bottom: 2px solid #F38C79; /* Salmón oscuro para el separador */
+/* Header de columna: título + badge */
+.status-column .status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
 }
 
-/* Contenedor de tareas dentro de cada columna */
-.tasks-container {
-  display: block;
+.status-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(0,0,0,0.87);
+}
+
+.status-count {
+  background-color: rgba(0,0,0,0.08);
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 12px;
+  color: rgba(0,0,0,0.87);
+}
+
+/* Lista de tareas con scroll interno */
+.status-column .tasks-container {
+  flex: 1 1 auto;
+  min-height: 0;    /* muy importante para que flex funcione bien */
   overflow-y: auto;
-  max-height: calc(100% - 80px); /* Ajustamos la altura */
-  padding-bottom: 10px;
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
-
-/* Tarjetas de tareas */
-.task-card {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  padding: 15px;
-  transition: box-shadow 0.3s;
-  cursor: grab;
-  margin-bottom: 15px;
-  color: #000; /* Texto negro */
-  margin: 10px; /* Margen entre tarjetas */
-}
-
-/* Efecto hover en las tarjetas */
-.task-card:hover {
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-}
-
+/* Más espacio entre los filtros */
 .filters-container {
   display: flex;
-  gap: 15px;
-  align-items: center;
-  padding: 10px;
-  background-color: #034C53; /* Mantenemos el fondo */
+  gap: 40px;       /* antes era 16px o 24px, súbelo a lo que necesites */
+  margin-left: 1%;
 }
 
-.filters-container mat-form-field {
-  width: 200px;
-}
-
-.filters-container mat-label {
-  font-size: 14px;
-  color: #fff; /* Texto blanco para las etiquetas */
-}
-
-.filters-container mat-select {
-  font-size: 14px;
-  color: #fff; /* Texto blanco para las selecciones */
-}
-
-.filters-container .mat-select-value {
-  color: #fff; /* Texto blanco para el valor seleccionado */
-}
-
-.filters-container .mat-select-arrow {
-  color: #fff; /* Color blanco para el icono de flecha */
-}
-
-.filters-container .mat-select-panel {
-  background-color: #fff; /* Fondo blanco para el panel de selección */
-}
-
-.filters-container .mat-option {
-  color: #333; /* Texto oscuro para las opciones */
-}

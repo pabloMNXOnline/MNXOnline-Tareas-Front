@@ -5,10 +5,13 @@ import { UpdateTaskComponent } from '../update-task/update-task.component';
 import { MatButtonModule } from '@angular/material/button';
 import { ProjectsService } from '../projects/projects.service';
 import { CommonModule } from '@angular/common';
+import { MatIconModule }   from '@angular/material/icon';
+import { MatChipsModule }  from '@angular/material/chips';
+
 
 @Component({
   selector: 'app-tasks',
-  imports: [MatCardModule,MatDialogModule, MatButtonModule, CommonModule],
+  imports: [MatCardModule,MatDialogModule, MatButtonModule, CommonModule, MatIconModule, MatChipsModule,],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css'
 })
@@ -18,6 +21,10 @@ export class TasksComponent implements OnInit {
   constructor(public projectsService: ProjectsService) { }
 
   private dialog = inject(MatDialog); 
+
+  trackById(index: number, task: any) {
+    return task._id;
+  }
 
   ngOnInit(): void {
     if (!Array.isArray(this.tasks)) {
