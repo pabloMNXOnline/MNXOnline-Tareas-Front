@@ -92,6 +92,10 @@
   font-size: 14px;
 }
 
+
+.project-toolbar .toolbar-section:first-child mat-icon {
+  color: #fff !important;
+}
 /* —————————————————————————————————————————————————————————— */
 /* CONTENEDOR DE LAS COLUMNAS (app-statuses) */
 /* —————————————————————————————————————————————————————————— */

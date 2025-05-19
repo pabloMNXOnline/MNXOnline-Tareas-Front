@@ -84,4 +84,8 @@ export class ProjectsComponent implements OnInit {
     this.auth.logout();
     this.router.navigate(['/login']);
   }
+
+  goToSelectProjects(): void {
+    this.router.navigate(['/select-projects']);
+  }
 }

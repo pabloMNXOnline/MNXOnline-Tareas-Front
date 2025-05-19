@@ -1,6 +1,14 @@
 <mat-toolbar class="project-toolbar">
   <!-- izquierda (puedes dejarlo vacío o meter un logo) -->
-  <div class="toolbar-section"></div>
+   <div class="toolbar-section">
+    <button
+      mat-icon-button
+      aria-label="Volver a selección de proyectos"
+      (click)="goToSelectProjects()"
+    >
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+  </div>
 
   <!-- centro (título del proyecto) -->
   <div class="toolbar-section toolbar-center">

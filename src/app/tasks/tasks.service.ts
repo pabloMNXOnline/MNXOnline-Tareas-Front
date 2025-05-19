@@ -51,4 +51,8 @@ export class TasksService {
   public updateTask(id: string, patch: Partial<Task>): Observable<Task> {
     return this.http.patch<Task>(`http://localhost:3000/tasks/${id}`, patch);
   }
+
+  public deleteTask(id: string): Observable<void> {
+    return this.http.delete<void>(`http://localhost:3000/tasks/${id}`);
+  }
 }
