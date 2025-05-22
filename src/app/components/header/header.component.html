@@ -1,16 +1,17 @@
 <mat-toolbar class="project-toolbar">
+    
+  <ng-container *ngIf="projectName; else logoutOnly">
 
-  <button
+    <button
+        class="arrow"
         mat-icon-button
         aria-label="Volver a selección de proyectos"
         (click)="goToSelectProjects()"
       >
       <mat-icon>arrow_back</mat-icon>
     </button>
-
-  <ng-container *ngIf="projectName; else logoutOnly">
     <span class="toolbar-title">{{ projectName }}</span>
-      
+        
     <span class="spacer"></span>
 
     <button mat-mini-fab color="primary" (click)="openDialog()">

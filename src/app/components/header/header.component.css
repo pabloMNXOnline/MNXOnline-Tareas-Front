@@ -80,6 +80,9 @@
   color: white;
 }
 
+.arrow{
+  color: #fff
+}
 
 .project-toolbar .toolbar-section:first-child mat-icon {
   color: #fff !important;
