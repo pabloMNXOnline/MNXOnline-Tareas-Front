@@ -1,104 +1,5 @@
-/* projects.component.css */
-
-/* —————————————————————————————————————————————————————————— */
-/* TOOLBAR PRINCIPAL: ocupa todo el ancho con degradado morado */
-/* —————————————————————————————————————————————————————————— */
-.project-toolbar {
-  /* full-width sobre un contenedor centrado */
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  /* degradado de indigo a morado oscuro */
-  background: linear-gradient(
-    90deg,
-    #4B0082 0%,    /* Indigo */
-    #300060 100%   /* Morado muy oscuro */
-  );
-  color: #ffffff;
-
-  padding: 0 32px;
-  height: 64px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-
-  /* fija al top si quieres scroll bajo él */
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-/* Cada sección (izquierda, centro, derecha) */
-.toolbar-section {
-  display: flex;
-  align-items: center;
-}
-
-/* Centro: título ocupa todo el espacio entre izq y dcha */
-.toolbar-center {
-  flex: 1;
-  justify-content: center;
-}
-
-/* Derecha: margen entre cada elemento */
-.toolbar-right > * {
-  margin-left: 12px;
-}
-
-/* —————————————————————————————————————————————————————————— */
-/* TÍTULO DEL PROYECTO */
-/* —————————————————————————————————————————————————————————— */
-.toolbar-title {
-  font-size: 22px;
-  font-weight: 600;
-  color: #e1bee7;  /* lila claro para contraste */
-}
-
-/* —————————————————————————————————————————————————————————— */
-/* BOTONES MINI-FAB (“+ nueva tarea”, “+ nueva etiqueta”) */
-/* —————————————————————————————————————————————————————————— */
-.project-toolbar button.mat-mini-fab {
-  background: rgba(255, 255, 255, 0.15);
-}
-.project-toolbar button.mat-mini-fab:hover {
-  background: rgba(255, 255, 255, 0.25);
-}
-
-/* —————————————————————————————————————————————————————————— */
-/* BOTÓN DE USUARIO + MENÚ */
-/* —————————————————————————————————————————————————————————— */
-.user-button {
-  background-color: #ffffff;
-  color: #4B0082;
-  text-transform: none;
-  padding: 6px 12px;
-  margin-left: 16px;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  transition: background-color 0.2s;
-}
-.user-button:hover {
-  background-color: #f0f0f0;
-}
-.user-button mat-icon:first-child {
-  margin-right: 6px;
-  font-size: 20px;
-}
-.user-button .username {
-  margin: 0 4px;
-  font-size: 14px;
-}
 
 
-.project-toolbar .toolbar-section:first-child mat-icon {
-  color: #fff !important;
-}
-/* —————————————————————————————————————————————————————————— */
-/* CONTENEDOR DE LAS COLUMNAS (app-statuses) */
-/* —————————————————————————————————————————————————————————— */
 .statuses-container {
   margin: 16px auto;
   padding: 0 32px;
@@ -106,7 +7,7 @@
   box-sizing: border-box;
 }
 
-/* Si quieres un poco de separación entre toolbar y filtros */
+
 .filters-container {
-  margin-top: 80px; /* ajusta según la altura de tu toolbar */
+  margin-top: 80px;
 }

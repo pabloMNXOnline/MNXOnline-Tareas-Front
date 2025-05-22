@@ -1,0 +1,51 @@
+<mat-toolbar class="project-toolbar">
+
+  <button
+        mat-icon-button
+        aria-label="Volver a selección de proyectos"
+        (click)="goToSelectProjects()"
+      >
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+
+  <ng-container *ngIf="projectName; else logoutOnly">
+    <span class="toolbar-title">{{ projectName }}</span>
+      
+    <span class="spacer"></span>
+
+    <button mat-mini-fab color="primary" (click)="openDialog()">
+      <mat-icon>add</mat-icon>
+    </button>
+    <button mat-mini-fab color="accent" (click)="openTagModal()">
+      <mat-icon>label</mat-icon>
+    </button>
+
+    <button mat-button class="user-button" [matMenuTriggerFor]="menu">
+      <mat-icon>person</mat-icon>
+      {{ username }}
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="onLogout()">
+        <mat-icon>logout</mat-icon>
+        Desconectar
+      </button>
+    </mat-menu>
+  </ng-container>
+
+  <!-- Sino, solo el botón de logout a la derecha -->
+  <ng-template #logoutOnly>
+    <span class="spacer"></span>
+    <button mat-button class="user-button" [matMenuTriggerFor]="menu">
+      <mat-icon>person</mat-icon>
+      {{ username }}
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="onLogout()">
+        <mat-icon>logout</mat-icon>
+        Desconectar
+      </button>
+    </mat-menu>
+  </ng-template>
+</mat-toolbar>

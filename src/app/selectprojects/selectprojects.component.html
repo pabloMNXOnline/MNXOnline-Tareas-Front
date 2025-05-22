@@ -1,3 +1,8 @@
+
+<app-header
+  [username]="username"
+  (logout)="onLogout()">
+></app-header>
 <div class="select-page">
   <h1 class="greeting">Bienvenid {{ username }}</h1>
   <p class="subtitle">Escoge tu proyecto</p>
@@ -5,21 +10,27 @@
   <div *ngIf="loading" class="loading">Cargando proyectos…</div>
   <div *ngIf="error" class="error">{{ error }}</div>
 
-  <div
-    class="projects-grid"
-    *ngIf="!loading && !error && projects.length > 0"
+  <div class="projects-grid" *ngIf="!loading && !error && projects.length > 0">
+  <mat-card
+    *ngFor="let p of projects"
+    class="project-card"
+    [routerLink]="['/projects']"
+    (click)="selectProject(p)"
   >
-    <mat-card
-      *ngFor="let p of projects"
-      class="project-card"
-      [routerLink]="['/projects']"
-      (click)="selectProject(p)"
+    <button
+      mat-icon-button
+      class="delete-btn"
+      (click)="onDelete(p, $event)"
+      aria-label="Eliminar proyecto"
     >
-      <div class="card-header">
-        <span class="project-name">{{ p.name }}</span>
-      </div>
-    </mat-card>
-  </div>
+      <mat-icon>delete</mat-icon> 
+    </button>
+
+    <div class="card-header">
+      <span class="project-name">{{ p.name }}</span>
+    </div>
+  </mat-card>
+</div>
 
   <div
     *ngIf="!loading && !error && projects.length === 0"

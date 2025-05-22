@@ -46,6 +46,7 @@ html, body {
   
   /* Tarjetas con gradientes rotativos */
   .project-card {
+    position: relative;
     flex: 0 1 220px;        /* ancho base 220px, pero flexible */
     display: flex;
     align-items: center;
@@ -57,6 +58,13 @@ html, body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
     text-align: center;
+  }
+
+  .delete-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 2;
   }
   
   /* Hover elevación */
@@ -96,4 +104,5 @@ html, body {
     bottom: 2rem;
     right: 2rem;
   }
+  
   

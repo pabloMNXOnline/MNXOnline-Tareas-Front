@@ -1,15 +1,15 @@
-// src/app/app.routes.ts
+
 import { Routes }             from '@angular/router';
 import { LoginComponent }     from './login/login.component';
 import { ProjectsComponent }  from './projects/projects.component';
 import { AuthGuard }          from './auth/auth.guard';
 import { SelectProjectsComponent } from './selectprojects/selectprojects.component';
+import { CreateProjectComponent } from './views/create-project/create-project.component';
 
 
 export const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
 
-  // 2) Ruta protegida: dashboard/proyectos
   {
     path: 'projects',
     component: ProjectsComponent,
@@ -20,10 +20,12 @@ export const appRoutes: Routes = [
     component: SelectProjectsComponent,
     canActivate: [AuthGuard], 
   },
-
-  // 3) Ruta por defecto: redirige a login
+  {
+    path:'projects/new',
+    component: CreateProjectComponent,
+    canActivate: [AuthGuard],
+  },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 
-  // 4) Cualquier otra: redirige a login o a 404
   { path: '**', redirectTo: 'login' },
 ];

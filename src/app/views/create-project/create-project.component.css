@@ -1,0 +1,33 @@
+/* Centrar toda la página */
+.create-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+/* Ajustes de la tarjeta */
+.card {
+  width: 100%;
+  max-width: 480px;
+}
+
+/* Formularios full-width */
+.full-width {
+  width: 100%;
+}
+
+/* Botones alineados */
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+/* Spinner más compacto */
+mat-progress-spinner {
+  margin-right: 8px;
+}

@@ -31,4 +31,16 @@ export class ProjectsService {
       `http://localhost:3000/projects/user/${userId}`
     );
   }
+  public createProject(payload: Project): Observable<Project> {
+    return this.http.post<Project>(
+      'http://localhost:3000/projects',
+      payload
+    );
+  }
+
+  public deleteProject(id: string): Observable<Project> {
+    return this.http.delete<Project>(
+      `http://localhost:3000/projects/${id}`
+    );
+  }
 }

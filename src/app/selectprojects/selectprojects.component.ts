@@ -7,11 +7,12 @@ import { FormsModule }          from '@angular/forms';
 import { MatCardModule }        from '@angular/material/card';
 import { MatIconModule }        from '@angular/material/icon';
 import { MatButtonModule }      from '@angular/material/button';
+import { HeaderComponent } from '../components/header/header.component';
 
 
 
 @Component({
-  imports: [CommonModule, RouterLink, FormsModule, MatCardModule, MatIconModule, MatButtonModule],
+  imports: [CommonModule, RouterLink, FormsModule, MatCardModule, MatIconModule, MatButtonModule, HeaderComponent],
   selector: 'app-selectprojects',
   templateUrl: './selectprojects.component.html',
   styleUrls: ['./selectprojects.component.css']
@@ -27,6 +28,7 @@ export class SelectProjectsComponent implements OnInit {
     private auth: AuthService,
     private router: Router
   ) {}
+  
 
   ngOnInit(): void {
     const userId = this.auth.getUserId();
@@ -49,6 +51,7 @@ export class SelectProjectsComponent implements OnInit {
       }
     });
   }
+  
   selectProject(project: Project): void {
     localStorage.setItem('selected_project_id', project._id);
   }
@@ -58,7 +61,31 @@ export class SelectProjectsComponent implements OnInit {
     return status.toLowerCase().includes('track') ? 'on-track' : 'on-hold';
   }
 
+   onDelete(project: Project, event: MouseEvent): void {
+    // Evita que dispare selectProject o navegue
+    event.stopPropagation();
+
+    const ok = window.confirm(`¿Seguro que quieres borrar «${project.name}»?`);
+    if (!ok) return;
+
+    // Llamas al servicio de borrado
+    this.projectsService.deleteProject(project._id).subscribe({
+      next: () => {
+        this.projects = this.projects.filter(p => p._id !== project._id);
+      },
+      error: err => {
+        console.error('Error borrando proyecto', err);
+        alert('No se pudo borrar el proyecto. Intenta de nuevo.');
+      }
+    });
+  }
+
   createProject() {
     this.router.navigate(['/projects/new']);
+  }
+
+  onLogout() {
+    this.auth.logout();
+    this.router.navigate(['/login']);
   }
 }

@@ -12,6 +12,7 @@ import { ProjectsService, Project } from './projects.service';
 import { AuthService }           from '../auth/auth.service';
 import { MatToolbarModule }  from '@angular/material/toolbar';
 import { MatMenuModule }     from '@angular/material/menu';
+import { HeaderComponent } from '../components/header/header.component';
 
 @Component({
   selector: 'app-projects',
@@ -23,22 +24,21 @@ import { MatMenuModule }     from '@angular/material/menu';
     MatIconModule,
     MatToolbarModule,
     MatMenuModule,
-
+    HeaderComponent
   ],
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.css'],  // ← plural
 })
 export class ProjectsComponent implements OnInit {
   @ViewChild(StatusesComponent) statusesComponent!: StatusesComponent;
-
-  project?: Project;  
-  username: string | null = localStorage.getItem('username');
-
   private projectsService = inject(ProjectsService);
   private auth            = inject(AuthService);
   private router          = inject(Router);
 
   constructor(public dialog: MatDialog) {}
+
+  project?: Project;
+  username = this.auth.getUsername();
 
   ngOnInit(): void {
     const projectId = localStorage.getItem('selected_project_id');
@@ -59,28 +59,28 @@ export class ProjectsComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(TaskModalsComponent, {
-      width: '800px',
-      data: {},
-    });
+  const dialogRef = this.dialog.open(TaskModalsComponent, {
+  width: '800px',
+   data: {},
+  });
 
-    dialogRef.afterClosed().subscribe(newTask => {
-      if (newTask) this.statusesComponent.addTask(newTask);
-    });
-  }
+  dialogRef.afterClosed().subscribe(newTask => {
+    if (newTask) this.statusesComponent.addTask(newTask);
+  });
+}
 
   openTagModal(): void {
-    const dialogRef = this.dialog.open(TagModalComponent, {
-      width: '800px',
-      data: {},
-    });
+  const dialogRef = this.dialog.open(TagModalComponent, {
+    width: '800px',
+  data: {},
+  });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) this.statusesComponent.addTask(result);
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) this.statusesComponent.addTask(result);
     });
   }
 
-  onLogout(): void {
+ onLogout(): void {
     this.auth.logout();
     this.router.navigate(['/login']);
   }
