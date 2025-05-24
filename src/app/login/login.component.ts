@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -35,8 +36,17 @@ export class LoginComponent {
 
   onSubmit() {
     this.auth.login(this.username, this.password).subscribe({
-      next: () => this.router.navigate(['/select-projects']),
-      error: () => alert('Credenciales inválidas'),
+      next: () => {
+        this.router.navigate(['/select-projects']);
+      },
+      error: () => {
+        Swal.fire({
+          icon: 'error',
+          title: '¡Credenciales inválidas!',
+          text: 'Usuario o contraseña incorrectos. Inténtalo de nuevo.',
+          confirmButtonText: 'OK'
+        });
+      }
     });
   }
 }
