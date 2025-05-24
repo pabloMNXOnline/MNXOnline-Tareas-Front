@@ -1,6 +1,5 @@
 
   
-  /* Contenedor principal: ocupa toda la pantalla y centra en horizontal */
   .select-page {
     display: flex;
     flex-direction: column;
@@ -12,7 +11,6 @@
     box-sizing: border-box;
   }
   
-  /* Título y subtítulo centrados y con ancho máximo */
   .greeting,
   .subtitle {
     width: 100%;
@@ -26,21 +24,20 @@
     margin-bottom: 2rem;
   }
   
-  /* Rejilla de tarjetas centrada */
   .projects-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;  /* centra las tarjetas dentro */
+    justify-content: center; 
     gap: 1.5rem;
     width: 100%;
     max-width: 960px;
     margin-bottom: 2rem;
   }
   
-  /* Tarjetas con gradientes rotativos */
+
   .project-card {
     position: relative;
-    flex: 0 1 220px;        /* ancho base 220px, pero flexible */
+    flex: 0 1 220px; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -60,13 +57,11 @@
     z-index: 2;
   }
   
-  /* Hover elevación */
   .project-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 12px 24px rgba(0,0,0,0.08);
   }
   
-  /* Gradientes por posición */
   .projects-grid .project-card:nth-child(3n+1) {
     background: linear-gradient(135deg, #ff7e5f, #feb47b);
     color: #fff;
@@ -82,8 +77,7 @@
     color: #fff;
     border: none;
   }
-  
-  /* Títulos dentro de la card */
+
   .project-name {
     font-size: 1.25rem;
     font-weight: 500;
@@ -91,7 +85,6 @@
     line-height: 1.2;
   }
   
-  /* FAB centrado pero fijado */
   .fab-add {
     position: fixed;
     bottom: 2rem;

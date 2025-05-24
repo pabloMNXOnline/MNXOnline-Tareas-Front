@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { HeaderComponent } from '../../components/header/header.component';
+import Swal from 'sweetalert2';
 
 
 
@@ -44,6 +45,7 @@ export class CreateProjectComponent implements OnInit {
 
   ngOnInit(): void {
     const userId = this.auth.getUserId();
+    this.username = this.auth.getUsername();
     if (!userId) {
       // handle missing user, e.g., redirect to login
       console.error('User ID not found in localStorage');
@@ -54,27 +56,44 @@ export class CreateProjectComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.projectForm.invalid) {
-      this.projectForm.markAllAsTouched();
-      return;
-    }
-
-    this.submitting = true;
-    const payload = this.projectForm.value;
-
-    this.projectService.createProject(payload).subscribe({
-      next: (res) => {
-        console.log('Project created', res);
-        // e.g. navigate to project list
-      },
-      error: (err) => {
-        console.error('Error creating project', err);
-        this.submitting = false;
-      }
-    });
-    this.router.navigate(['/select-projects']);
-    
+  if (this.projectForm.invalid) {
+    this.projectForm.markAllAsTouched();
+    return;
   }
+
+  const payload = this.projectForm.value;
+
+  Swal.fire({
+    title: 'Creando proyecto...',
+    allowOutsideClick: false,
+    didOpen: () => {
+      Swal.showLoading();
+    }
+  });
+
+  this.projectService.createProject(payload).subscribe({
+    next: (res) => {
+      console.log('Project created', res);
+      Swal.fire({
+        title: '¡Proyecto creado!',
+        text: `El proyecto «${res.name || payload.name}» se ha creado correctamente.`,
+        icon: 'success',
+        confirmButtonText: 'OK'
+      }).then(() => {
+        this.router.navigate(['/select-projects']);
+      });
+    },
+    error: (err) => {
+      console.error('Error creating project', err);
+      Swal.fire({
+        title: 'Error',
+        text: 'No se pudo crear el proyecto. Intenta de nuevo.',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
+    }
+  });
+}
 
   onLogout(): void {
       this.auth.logout();
